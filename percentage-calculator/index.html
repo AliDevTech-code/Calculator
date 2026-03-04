@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- ── SEO ── -->
+    <title>Percentage Calculator – What is X% of Y? | ToolsHub</title>
+    <meta name="description"
+        content="Free online percentage calculator. Instantly find what percent of a number is. Simple, fast, and mobile-friendly. No signup required.">
+    <meta name="keywords"
+        content="percentage calculator, what is percent of number, calculate percentage online, percent of a number, free percentage calculator, online percent tool">
+    <meta name="author" content="ToolsHub">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Percentage Calculator – ToolsHub">
+    <meta property="og:description"
+        content="Instantly calculate what percent of any number is. Free, fast, and mobile-friendly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calculator-seven-pi-12.vercel.app/percentage.html">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://calculator-seven-pi-12.vercel.app/percentage.html">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Percentage Calculator",
+  "url": "https://calculator-seven-pi-12.vercel.app/percentage.html",
+  "description": "Free online percentage calculator. Find what X% of Y is instantly.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            touch-action: manipulation;
+        }
+
+        body {
+            background: #0f172a;
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 18px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .nav-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6ee7b7, #60a5fa);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .nav-logo span {
+            color: #6ee7b7;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .nav-center a {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 6px 13px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-center a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-center a.active {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+        }
+
+        .nav-center a i {
+            font-size: 11px;
+        }
+
+        .nav-home-btn {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #000;
+            background: linear-gradient(135deg, #6ee7b7, #34d399);
+            border: none;
+            border-radius: 20px;
+            padding: 7px 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-home-btn:hover {
+            box-shadow: 0 0 16px rgba(110, 231, 183, 0.4);
+        }
+
+        @media(max-width:540px) {
+            .nav-center {
+                display: none;
+            }
+        }
+
+        /* ── PAGE ── */
+        .page {
+            padding-top: 74px;
+            padding-bottom: 50px;
+            padding-left: 16px;
+            padding-right: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .breadcrumb {
+            font-size: 12px;
+            color: #475569;
+            margin-bottom: 16px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .breadcrumb a {
+            color: #6ee7b7;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb i {
+            font-size: 10px;
+        }
+
+        .page-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(22px, 5vw, 30px);
+            font-weight: 800;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .page-title i {
+            color: #60a5fa;
+            margin-right: 8px;
+        }
+
+        .page-sub {
+            font-size: 13px;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 28px;
+            line-height: 1.6;
+            max-width: 380px;
+        }
+
+        /* ── CARD ── */
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 24px;
+            padding: 28px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        .inp-grp {
+            margin-bottom: 18px;
+        }
+
+        .inp-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .inp-lbl i {
+            font-size: 11px;
+            color: #60a5fa;
+        }
+
+        .inp-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .inp-field {
+            flex: 1;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 15px 18px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+
+        .inp-field:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+        }
+
+        .inp-field::placeholder {
+            color: #1e3a5f;
+            font-size: 15px;
+        }
+
+        .inp-unit {
+            font-size: 18px;
+            font-weight: 700;
+            color: #60a5fa;
+            min-width: 28px;
+            text-align: center;
+        }
+
+        /* of label */
+        .of-label {
+            text-align: center;
+            color: #334155;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        /* Result */
+        .result-box {
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.1), rgba(96, 165, 250, 0.03));
+            border: 1px solid rgba(96, 165, 250, 0.22);
+            border-radius: 16px;
+            padding: 22px 20px;
+            margin-top: 6px;
+            text-align: center;
+            display: none;
+            animation: popIn 0.3s ease both;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .result-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #475569;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .result-lbl i {
+            color: #60a5fa;
+        }
+
+        .result-val {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(32px, 9vw, 48px);
+            font-weight: 800;
+            color: #60a5fa;
+            line-height: 1;
+            word-break: break-all;
+            margin-bottom: 10px;
+        }
+
+        .result-eq {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        .result-eq b {
+            color: #94a3b8;
+        }
+
+        /* Clear */
+        .clear-btn {
+            background: none;
+            border: 1px solid #1e3a5f;
+            border-radius: 10px;
+            padding: 9px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            color: #fff;
+            border-color: #334155;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* ── FAQ / INFO ── */
+        .info-box {
+            width: 100%;
+            max-width: 420px;
+            margin-top: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .info-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #94a3b8;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-title i {
+            color: #60a5fa;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-row i {
+            color: #334155;
+            font-size: 11px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .info-row b {
+            color: #64748b;
+        }
+
+        /* scrollbar */
+        ::-webkit-scrollbar {
+            width: 1px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a80c5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #6ee7b7, #60a5fa);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/index.html" class="nav-logo">
+                <div class="nav-logo-icon"><i class="fa-solid fa-toolbox"></i></div>
+                Tools<span>Hub</span>
+            </a>
+
+            <a href="/index.html" class="nav-home-btn">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+        </div>
+    </nav>
+
+    <div class="page">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="/index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <span>Percentage Calculator</span>
+        </div>
+
+        <h1 class="page-title"><i class="fa-solid fa-percent"></i>Percentage Calculator</h1>
+        <p class="page-sub">Find what X% of any number is — instantly. Free and mobile-friendly.</p>
+
+        <!-- CARD -->
+        <div class="card">
+
+            <div class="inp-grp">
+                <div class="inp-lbl"><i class="fa-solid fa-percent"></i> Percentage</div>
+                <div class="inp-row">
+                    <input type="number" class="inp-field" id="inp-pct" placeholder="e.g.  20" min="0"
+                        oninput="calc()" />
+                    <span class="inp-unit">%</span>
+                </div>
+            </div>
+
+            <div class="of-label"><i class="fa-solid fa-xmark" style="font-size:10px;"></i> &nbsp;OF</div>
+
+            <div class="inp-grp">
+                <div class="inp-lbl"><i class="fa-solid fa-coins"></i> Number</div>
+                <input type="number" class="inp-field" id="inp-num" placeholder="e.g.  5000" min="0" oninput="calc()" />
+            </div>
+
+            <!-- Result -->
+            <div class="result-box" id="result-box">
+                <div class="result-lbl"><i class="fa-solid fa-equals"></i> Answer</div>
+                <div class="result-val" id="result-val">—</div>
+                <div class="result-eq" id="result-eq"></div>
+            </div>
+
+            <button class="clear-btn" onclick="clearAll()">
+                <i class="fa-solid fa-rotate-left"></i> Clear
+            </button>
+
+        </div>
+
+        <!-- Info box — SEO content -->
+        <div class="info-box">
+            <div class="info-title"><i class="fa-solid fa-circle-info"></i> How it works</div>
+            <div class="info-row">
+                <i class="fa-solid fa-circle-dot"></i>
+                <span>Enter a percentage value in the first field — e.g. <b>20</b></span>
+            </div>
+            <div class="info-row">
+                <i class="fa-solid fa-circle-dot"></i>
+                <span>Enter any number in the second field — e.g. <b>5000</b></span>
+            </div>
+            <div class="info-row">
+                <i class="fa-solid fa-circle-dot"></i>
+                <span>Result appears instantly — <b>20% of 5000 = 1000</b></span>
+            </div>
+            <div class="info-row">
+                <i class="fa-solid fa-circle-dot"></i>
+                <span>Formula: <b>(Percentage ÷ 100) × Number</b></span>
+            </div>
+        </div>
+        <br>
+<script>
+  atOptions = {
+    'key' : '64011bd107af3f289fba55b72d187db7',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/64011bd107af3f289fba55b72d187db7/invoke.js"></script>
+    </div>
+
+    <script>
+        function calc() {
+            var pct = parseFloat(document.getElementById('inp-pct').value);
+            var num = parseFloat(document.getElementById('inp-num').value);
+            var box = document.getElementById('result-box');
+
+            if (isNaN(pct) || isNaN(num)) {
+                box.classList.remove('show');
+                return;
+            }
+
+            var result = (pct / 100) * num;
+
+            // Format nicely
+            var fmt = function (n) {
+                return parseFloat(n.toFixed(6)).toLocaleString('en-US');
+            };
+
+            document.getElementById('result-val').textContent = fmt(result);
+            document.getElementById('result-eq').innerHTML =
+                '<b>' + fmt(pct) + '%</b> of <b>' + fmt(num) + '</b> = <b>' + fmt(result) + '</b>';
+
+            box.classList.add('show');
+        }
+
+        function clearAll() {
+            document.getElementById('inp-pct').value = '';
+            document.getElementById('inp-num').value = '';
+            document.getElementById('result-box').classList.remove('show');
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Calculator – ToolsHub</title>
+
+    <meta name="description"
+        content="Professional Glassmorphism Calculator with real-time results and immersive sound. Optimized for mobile.">
+    <meta name="keywords"
+        content="Calculator, Pro Calc, Mobile Calculator, Viral Web Tool, Adsterra Ready, Glassmorphism UI">
+    <meta name="author" content="Professional Full Stack Developer">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            touch-action: manipulation;
+        }
+
+        body {
+            background: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 999;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 18px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+        .nav-logo-icon {
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, #6ee7b7, #60a5fa);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; color: #000;
+        }
+        .nav-logo span { color: #6ee7b7; }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .nav-center a {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 6px 13px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .nav-center a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.07);
+        }
+        .nav-center a.active {
+            color: #6ee7b7;
+            background: rgba(110,231,183,0.1);
+        }
+        .nav-center a i { font-size: 11px; }
+
+        .nav-home-btn {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #000;
+            background: linear-gradient(135deg, #6ee7b7, #34d399);
+            border: none;
+            border-radius: 20px;
+            padding: 7px 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .nav-home-btn:hover {
+            box-shadow: 0 0 16px rgba(110,231,183,0.4);
+        }
+        .nav-home-btn i { font-size: 11px; }
+
+        /* Mobile: hide center links, show only logo + home */
+        @media(max-width: 540px) {
+            .nav-center { display: none; }
+        }
+
+        /* Push content below fixed navbar */
+        .page-body {
+            margin-top: 74px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ── BREADCRUMB ── */
+        .breadcrumb {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            color: #475569;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            max-width: 360px;
+        }
+        .breadcrumb a {
+            color: #6ee7b7;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb i { font-size: 10px; }
+
+        /* Ad Slots - Fixed for Mobile */
+        .ad-slot {
+            background: rgba(255, 255, 255, 0.03);
+            width: 100%;
+            max-width: 350px;
+            min-height: 50px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            font-size: 10px;
+            border: 1px dashed #334155;
+            border-radius: 8px;
+        }
+
+        /* Calculator Card - Optimized for Mobile Viewport */
+        .calc-card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            max-width: 360px;
+            border: 1px solid #334155;
+        }
+
+        .screen {
+            margin-bottom: 20px;
+            text-align: right;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 18px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        #input-display {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            word-break: break-all;
+            margin-bottom: 5px;
+        }
+
+        #result-preview {
+            color: #38bdf8;
+            font-size: clamp(1.8rem, 10vw, 2.6rem);
+            font-weight: 700;
+            word-break: break-all;
+            line-height: 1.2;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            height: 65px;
+            border-radius: 18px;
+            border: none;
+            background: #334155;
+            color: #f8fafc;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button:active {
+            transform: scale(0.92);
+            background: #475569;
+            border: 2px solid #38bdf8;
+        }
+
+        .op    { color: #38bdf8; }
+        .action { color: #fb7185; }
+        .equal {
+            background: #38bdf8;
+            color: #0f172a;
+            font-weight: 800;
+        }
+        .equal:active { background: #7dd3fc; }
+
+        @media (max-width: 350px) {
+            button { height: 55px; font-size: 1.2rem; }
+            .screen { min-height: 110px; }
+        }
+
+      
+::-webkit-scrollbar {
+  width: 1px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #0aa3ade3; 
+  border-left: 1px solid #1abe51dc; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--gold), var(--gold2), #fff);
+  border-radius: 10px; 
+  border: 3px solid #29e90fde; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #b8860b, var(--gold), var(--gold2));
+}
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="/index.html" class="nav-logo">
+            <div class="nav-logo-icon"><i class="fa-solid fa-toolbox"></i></div>
+            Tools<span>Hub</span>
+        </a>
+        
+        <a href="/index.html" class="nav-home-btn">
+            <i class="fa-solid fa-house"></i> Home
+        </a>
+    </div>
+</nav>
+
+<div class="page-body">
+
+    <!-- AD TOP -->
+    <script>
+      atOptions = {
+        'key' : '64011bd107af3f289fba55b72d187db7',
+        'format' : 'iframe',
+        'height' : 50,
+        'width' : 320,
+        'params' : {}
+      };
+    </script>
+    <script src="https://www.highperformanceformat.com/64011bd107af3f289fba55b72d187db7/invoke.js"></script>
+    <br>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="/index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span>Basic Calculator</span>
+    </div>
+
+    <!-- CALCULATOR -->
+    <div class="calc-card">
+        <div class="screen">
+            <div id="input-display">0</div>
+            <div id="result-preview">0</div>
+        </div>
+
+        <div class="buttons">
+            <button class="action" onclick="handleAction('AC')">AC</button>
+            <button class="action" onclick="handleAction('DEL')">⌫</button>
+            <button class="op" onclick="handleAppend('/')">÷</button>
+            <button class="op" onclick="handleAppend('*')">×</button>
+
+            <button onclick="handleAppend('7')">7</button>
+            <button onclick="handleAppend('8')">8</button>
+            <button onclick="handleAppend('9')">9</button>
+            <button class="op" onclick="handleAppend('-')">-</button>
+
+            <button onclick="handleAppend('4')">4</button>
+            <button onclick="handleAppend('5')">5</button>
+            <button onclick="handleAppend('6')">6</button>
+            <button class="op" onclick="handleAppend('+')">+</button>
+
+            <button onclick="handleAppend('1')">1</button>
+            <button onclick="handleAppend('2')">2</button>
+            <button onclick="handleAppend('3')">3</button>
+            <button class="op" onclick="handleAppend('.')">.</button>
+
+            <button style="grid-column: span 3;" onclick="handleAppend('0')">0</button>
+            <button class="equal" onclick="handleFinalize()">=</button>
+        </div>
+    </div>
+
+    <!-- AD BOTTOM -->
+    <script async="async" data-cfasync="false" src="https://pl28840316.effectivegatecpm.com/e9e2d23d9a71c488f059928800054089/invoke.js"></script>
+    <div id="container-e9e2d23d9a71c488f059928800054089"></div>
+
+</div><!-- end page-body -->
+
+<script>
+    const inputDiv = document.getElementById('input-display');
+    const resultDiv = document.getElementById('result-preview');
+    let currentInput = "";
+
+    // Sound Engine — unchanged
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playUniversalSound() {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        oscillator.type = 'triangle';
+        oscillator.frequency.setValueAtTime(850, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
+        oscillator.start();
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+        oscillator.stop(audioCtx.currentTime + 0.12);
+    }
+
+    function handleAppend(val) {
+        playUniversalSound();
+        const lastPart = currentInput.split(/[\+\-\*\/]/).pop();
+        if (val === '.' && lastPart.includes('.')) return;
+        currentInput += val;
+        updateUI();
+    }
+
+    function handleAction(type) {
+        playUniversalSound();
+        if (type === 'AC') currentInput = "";
+        else currentInput = currentInput.slice(0, -1);
+        updateUI();
+    }
+
+    function handleFinalize() {
+        playUniversalSound();
+        if (resultDiv.innerText !== "Error" && currentInput !== "") {
+            currentInput = resultDiv.innerText;
+            inputDiv.innerText = "";
+            updateUI();
+        }
+    }
+
+    function updateUI() {
+        if (currentInput === "") {
+            inputDiv.innerText = "0";
+            resultDiv.innerText = "0";
+            return;
+        }
+        inputDiv.innerText = currentInput;
+        try {
+            let cleanInput = currentInput.replace(/×/g, '*').replace(/÷/g, '/');
+            let res = Function('"use strict";return (' + cleanInput + ')')();
+            resultDiv.innerText = res !== undefined ? Number(res.toFixed(10)) : "0";
+        } catch (e) {
+            // Keep preview current while typing
+        }
+    }
+</script>
+
+</body>
+</html>

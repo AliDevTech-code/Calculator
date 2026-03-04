@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- SEO -->
+    <title>GST & Tax Calculator – Add or Remove Tax Instantly | ToolsHub</title>
+    <meta name="description"
+        content="Free online GST and tax calculator. Add GST to a price or remove GST from a total. Works for any tax rate — GST, VAT, sales tax. Fast, free, and mobile-friendly.">
+    <meta name="keywords"
+        content="GST calculator, tax calculator, VAT calculator, add GST, remove GST, GST inclusive exclusive, sales tax calculator, Pakistan GST, online tax tool, free GST calculator">
+    <meta name="author" content="ToolsHub">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="GST & Tax Calculator | ToolsHub">
+    <meta property="og:description"
+        content="Add or remove GST/VAT/Tax from any amount instantly. Free and mobile-friendly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calculator-seven-pi-12.vercel.app/gst-calculator/">
+    <link rel="canonical" href="https://calculator-seven-pi-12.vercel.app/gst-calculator/">
+    <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"GST & Tax Calculator","url":"https://calculator-seven-pi-12.vercel.app/gst-calculator/","description":"Free online GST and tax calculator. Add or remove GST, VAT, and sales tax from any amount.","applicationCategory":"FinanceApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            touch-action: manipulation;
+        }
+
+        body {
+            background: #0f172a;
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 18px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .nav-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6ee7b7, #60a5fa);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .nav-logo span {
+            color: #6ee7b7;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .nav-center a {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 6px 13px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-center a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-center a.active {
+            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.1);
+        }
+
+        .nav-center a i {
+            font-size: 11px;
+        }
+
+        .nav-home-btn {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #000;
+            background: linear-gradient(135deg, #6ee7b7, #34d399);
+            border: none;
+            border-radius: 20px;
+            padding: 7px 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-home-btn:hover {
+            box-shadow: 0 0 16px rgba(110, 231, 183, 0.4);
+        }
+
+        @media(max-width:540px) {
+            .nav-center {
+                display: none;
+            }
+        }
+
+        /* PAGE */
+        .page {
+            padding-top: 74px;
+            padding-bottom: 50px;
+            padding-left: 16px;
+            padding-right: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .breadcrumb {
+            font-size: 12px;
+            color: #475569;
+            margin-bottom: 16px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .breadcrumb a {
+            color: #6ee7b7;
+            text-decoration: none;
+        }
+
+        .breadcrumb i {
+            font-size: 10px;
+        }
+
+        .page-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(22px, 5vw, 30px);
+            font-weight: 800;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .page-title i {
+            color: #fbbf24;
+            margin-right: 8px;
+        }
+
+        .page-sub {
+            font-size: 13px;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 24px;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        /* MODE TABS */
+        .mode-tabs {
+            display: flex;
+            gap: 0;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 14px;
+            padding: 4px;
+            margin-bottom: 24px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .mode-tab {
+            flex: 1;
+            padding: 10px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+        }
+
+        .mode-tab i {
+            font-size: 12px;
+        }
+
+        .mode-tab.active {
+            background: linear-gradient(135deg, #92400e, #fbbf24);
+            color: #000;
+        }
+
+        /* QUICK TAX RATES */
+        .rates-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .rate-btn {
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            border: 1px solid #334155;
+            background: transparent;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .rate-btn:hover {
+            border-color: rgba(251, 191, 36, 0.4);
+            color: #fbbf24;
+        }
+
+        .rate-btn.active {
+            background: rgba(251, 191, 36, 0.12);
+            border-color: rgba(251, 191, 36, 0.4);
+            color: #fbbf24;
+        }
+
+        /* CARD */
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 24px;
+            padding: 26px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px;
+        }
+
+        .inp-grp {
+            margin-bottom: 18px;
+        }
+
+        .inp-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .inp-lbl i {
+            font-size: 11px;
+            color: #fbbf24;
+        }
+
+        .inp-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .inp-field {
+            flex: 1;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+
+        .inp-field:focus {
+            border-color: #fbbf24;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+        }
+
+        .inp-field::placeholder {
+            color: #1e3a5f;
+            font-size: 15px;
+        }
+
+        .inp-unit {
+            font-size: 14px;
+            font-weight: 700;
+            color: #64748b;
+            min-width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Slider */
+        .slider-wrap {
+            margin-top: 8px;
+        }
+
+        .slider {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 4px;
+            border-radius: 4px;
+            background: #334155;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #92400e, #fbbf24);
+            cursor: pointer;
+            border: 2px solid #0f172a;
+            box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #334155;
+            margin-top: 6px;
+        }
+
+        /* RESULT */
+        .result-box {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(251, 191, 36, 0.03));
+            border: 1px solid rgba(251, 191, 36, 0.22);
+            border-radius: 18px;
+            padding: 22px 20px;
+            display: none;
+            animation: popIn 0.35s ease both;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px) scale(0.97)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1)
+            }
+        }
+
+        /* Result rows */
+        .res-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .res-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+        }
+
+        .res-row.highlight {
+            background: rgba(251, 191, 36, 0.08);
+            border-color: rgba(251, 191, 36, 0.25);
+        }
+
+        .res-label {
+            font-size: 13px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .res-label i {
+            color: #fbbf24;
+            font-size: 12px;
+        }
+
+        .res-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: #f8fafc;
+        }
+
+        .res-row.highlight .res-value {
+            color: #fbbf24;
+            font-size: 20px;
+        }
+
+        /* Tax bar visualization */
+        .tax-bar-wrap {
+            margin-top: 4px;
+        }
+
+        .tax-bar-lbl {
+            font-size: 11px;
+            color: #475569;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .tax-bar-bg {
+            width: 100%;
+            height: 10px;
+            background: #1e293b;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .tax-bar-base {
+            height: 100%;
+            background: linear-gradient(90deg, #334155, #475569);
+            border-radius: 20px 0 0 20px;
+            transition: width 0.5s ease;
+        }
+
+        .tax-bar-tax {
+            height: 100%;
+            background: linear-gradient(90deg, #92400e, #fbbf24);
+            border-radius: 0 20px 20px 0;
+            transition: width 0.5s ease;
+        }
+
+        /* Clear */
+        .clear-btn {
+            background: none;
+            border: 1px solid #1e3a5f;
+            border-radius: 10px;
+            padding: 9px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            margin-top: 14px;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            color: #fff;
+            border-color: #334155;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* INFO */
+        .info-box {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .info-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #94a3b8;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-title i {
+            color: #fbbf24;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-row i {
+            color: #334155;
+            font-size: 11px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .info-row b {
+            color: #64748b;
+        }
+
+        ::-webkit-scrollbar {
+            width: 1px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #fbbf24, #92400e);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/index.html" class="nav-logo">
+                <div class="nav-logo-icon"><i class="fa-solid fa-toolbox"></i></div>
+                Tools<span>Hub</span>
+            </a>
+            
+            <a href="/index.html" class="nav-home-btn"><i class="fa-solid fa-house"></i> Home</a>
+        </div>
+    </nav>
+
+    <div class="page">
+
+        <div class="breadcrumb">
+            <a href="/index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <span>GST / Tax Calculator</span>
+        </div>
+
+        <h1 class="page-title"><i class="fa-solid fa-file-invoice-dollar"></i>GST & Tax Calculator</h1>
+        <p class="page-sub">Add tax to a price or remove tax from a total — instantly.</p>
+
+        <!-- MODE TABS -->
+        <div class="mode-tabs">
+            <button class="mode-tab active" onclick="switchMode('add', this)">
+                <i class="fa-solid fa-plus"></i> Add Tax
+            </button>
+            <button class="mode-tab" onclick="switchMode('remove', this)">
+                <i class="fa-solid fa-minus"></i> Remove Tax
+            </button>
+        </div>
+
+        <!-- QUICK RATES -->
+        <div class="rates-row">
+            <button class="rate-btn active" onclick="setRate(5,   this)">5%</button>
+            <button class="rate-btn" onclick="setRate(10,  this)">10%</button>
+            <button class="rate-btn" onclick="setRate(13,  this)">13%</button>
+            <button class="rate-btn" onclick="setRate(15,  this)">15%</button>
+            <button class="rate-btn" onclick="setRate(17,  this)">17%</button>
+            <button class="rate-btn" onclick="setRate(18,  this)">18%</button>
+            <button class="rate-btn" onclick="setRate(20,  this)">20%</button>
+        </div>
+
+        <!-- CARD -->
+        <div class="card">
+
+            <!-- Amount -->
+            <div class="inp-grp">
+                <div class="inp-lbl" id="amtLbl"><i class="fa-solid fa-money-bill-wave"></i> Original Price (Before Tax)
+                </div>
+                <div class="inp-row">
+                    <input type="number" class="inp-field" id="amtInp" placeholder="Enter amount" min="0"
+                        oninput="calc()" />
+                    <span class="inp-unit">PKR</span>
+                </div>
+            </div>
+
+            <!-- Tax Rate -->
+            <div class="inp-grp">
+                <div class="inp-lbl"><i class="fa-solid fa-percent"></i> Tax Rate</div>
+                <div class="inp-row">
+                    <input type="number" class="inp-field" id="rateInp" placeholder="e.g. 17" value="5" min="0"
+                        max="100" step="0.1" oninput="syncSlider(); calc()" />
+                    <span class="inp-unit">%</span>
+                </div>
+                <div class="slider-wrap">
+                    <input type="range" class="slider" id="rateSlider" min="0" max="50" step="0.5" value="5"
+                        oninput="document.getElementById('rateInp').value=this.value; clearRateBtns(); calc()" />
+                    <div class="slider-labels"><span>0%</span><span>10%</span><span>25%</span><span>50%</span></div>
+                </div>
+            </div>
+
+            <!-- RESULT -->
+            <div class="result-box" id="resultBox">
+                <div class="res-rows" id="resRows"></div>
+                <div class="tax-bar-wrap">
+                    <div class="tax-bar-lbl">
+                        <span id="barBaseLbl">Base</span>
+                        <span id="barTaxLbl">Tax</span>
+                    </div>
+                    <div class="tax-bar-bg">
+                        <div class="tax-bar-base" id="barBase"></div>
+                        <div class="tax-bar-tax" id="barTax"></div>
+                    </div>
+                </div>
+                <button class="clear-btn" onclick="clearAll()"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            </div>
+
+        </div>
+
+        <!-- Info -->
+        <div class="info-box">
+            <div class="info-title"><i class="fa-solid fa-circle-info"></i> How it works</div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span><b>Add Tax</b> — Enter price before tax.
+                    Result shows tax amount + total price with tax.</span></div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span><b>Remove Tax</b> — Enter total price
+                    (already includes tax). Result shows original price + tax portion.</span></div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span>Use <b>quick rate buttons</b> or type a
+                    <b>custom rate</b> for any GST, VAT, or sales tax.</span></div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span>Pakistan standard GST rate is
+                    <b>17%</b>.</span></div>
+        </div>
+<br> <script>
+  atOptions = {
+    'key' : '64011bd107af3f289fba55b72d187db7',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/64011bd107af3f289fba55b72d187db7/invoke.js"></script>
+    </div>
+
+    <script>
+        var currentMode = 'add';
+
+        function switchMode(mode, btn) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-tab').forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            // Update label
+            var lbl = document.getElementById('amtLbl');
+            lbl.innerHTML = mode === 'add'
+                ? '<i class="fa-solid fa-money-bill-wave" style="color:#fbbf24;"></i> Original Price (Before Tax)'
+                : '<i class="fa-solid fa-money-bill-wave" style="color:#fbbf24;"></i> Total Price (Includes Tax)';
+            calc();
+        }
+
+        function setRate(r, btn) {
+            document.querySelectorAll('.rate-btn').forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            document.getElementById('rateInp').value = r;
+            document.getElementById('rateSlider').value = r;
+            calc();
+        }
+
+        function syncSlider() {
+            document.getElementById('rateSlider').value = document.getElementById('rateInp').value;
+        }
+
+        function clearRateBtns() {
+            document.querySelectorAll('.rate-btn').forEach(function (b) { b.classList.remove('active'); });
+        }
+
+        function fmt(n) {
+            return parseFloat(n.toFixed(2)).toLocaleString('en-PK', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function calc() {
+            var amt = parseFloat(document.getElementById('amtInp').value);
+            var rate = parseFloat(document.getElementById('rateInp').value);
+            var box = document.getElementById('resultBox');
+
+            if (isNaN(amt) || isNaN(rate) || amt <= 0 || rate < 0) {
+                box.classList.remove('show'); return;
+            }
+
+            var base, taxAmt, total;
+
+            if (currentMode === 'add') {
+                base = amt;
+                taxAmt = amt * rate / 100;
+                total = amt + taxAmt;
+            } else {
+                // Remove: total is given, find base
+                total = amt;
+                base = amt / (1 + rate / 100);
+                taxAmt = total - base;
+            }
+
+            var basePct = (base / total * 100).toFixed(1);
+            var taxPct = (taxAmt / total * 100).toFixed(1);
+
+            // Rows
+            var rows = '';
+            if (currentMode === 'add') {
+                rows += row('fa-tag', 'Original Price', 'PKR ' + fmt(base), false);
+                rows += row('fa-percent', 'Tax (' + rate + '%)', 'PKR ' + fmt(taxAmt), false);
+                rows += row('fa-circle-check', 'Total (with Tax)', 'PKR ' + fmt(total), true);
+            } else {
+                rows += row('fa-circle-check', 'Total Price', 'PKR ' + fmt(total), false);
+                rows += row('fa-percent', 'Tax (' + rate + '%)', 'PKR ' + fmt(taxAmt), false);
+                rows += row('fa-tag', 'Original Price', 'PKR ' + fmt(base), true);
+            }
+            document.getElementById('resRows').innerHTML = rows;
+
+            // Bar
+            document.getElementById('barBase').style.width = basePct + '%';
+            document.getElementById('barTax').style.width = taxPct + '%';
+            document.getElementById('barBaseLbl').textContent = 'Base ' + basePct + '%';
+            document.getElementById('barTaxLbl').textContent = 'Tax ' + taxPct + '%';
+
+            box.classList.add('show');
+        }
+
+        function row(icon, label, value, highlight) {
+            return '<div class="res-row' + (highlight ? ' highlight' : '') + '">' +
+                '<span class="res-label"><i class="fa-solid ' + icon + '"></i>' + label + '</span>' +
+                '<span class="res-value">' + value + '</span>' +
+                '</div>';
+        }
+
+        function clearAll() {
+            document.getElementById('amtInp').value = '';
+            document.getElementById('resultBox').classList.remove('show');
+        }
+
+        // Auto calc on load if value exists
+        calc();
+    </script>
+
+</body>
+
+</html>

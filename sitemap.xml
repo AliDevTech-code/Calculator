@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Basic Calculator -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/basic/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Percentage Calculator -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/percentage-calculator/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Age Calculator -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/age-calculator/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Currency Converter -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/currency/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- USDT to PKR -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/usdt-to-pkr/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Loan / EMI Calculator -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/loan-calculator/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- BMI Calculator -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/BMI-Calculator/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Unit Converter -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/unit-converter/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Date Calculator -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/date-calculator/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Scientific Calculator -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/scientific-calculator/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- GST Calculator -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/gst-calculator/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Profit / Loss Calculator -->
+  <url>
+    <loc>https://calculator-seven-pi-12.vercel.app/profit-loss-colculator/</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

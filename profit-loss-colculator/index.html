@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- SEO -->
+    <title>Profit & Loss Calculator – Calculate Profit Margin & Percentage | ToolsHub</title>
+    <meta name="description"
+        content="Free online profit and loss calculator. Calculate profit amount, loss amount, profit percentage, loss percentage, and margin for any business transaction or trade instantly.">
+    <meta name="keywords"
+        content="profit loss calculator, profit percentage calculator, loss percentage calculator, profit margin calculator, business profit calculator, trade profit loss, selling price calculator, cost price calculator, margin calculator, online profit calculator Pakistan">
+    <meta name="author" content="ToolsHub">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="Profit & Loss Calculator | ToolsHub">
+    <meta property="og:description"
+        content="Calculate profit, loss, margin, and percentage for any business or trade. Free and instant.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calculator-seven-pi-12.vercel.app/profit-loss-calculator/">
+    <link rel="canonical" href="https://calculator-seven-pi-12.vercel.app/profit-loss-calculator/">
+    <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Profit & Loss Calculator","url":"https://calculator-seven-pi-12.vercel.app/profit-loss-calculator/","description":"Free online profit and loss calculator for business transactions and trades.","applicationCategory":"FinanceApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            touch-action: manipulation;
+        }
+
+        body {
+            background: #0f172a;
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 18px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .nav-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6ee7b7, #60a5fa);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .nav-logo span {
+            color: #6ee7b7;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .nav-center a {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 6px 13px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-center a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-center a.active {
+            color: #34d399;
+            background: rgba(52, 211, 153, 0.1);
+        }
+
+        .nav-center a i {
+            font-size: 11px;
+        }
+
+        .nav-home-btn {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #000;
+            background: linear-gradient(135deg, #6ee7b7, #34d399);
+            border: none;
+            border-radius: 20px;
+            padding: 7px 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-home-btn:hover {
+            box-shadow: 0 0 16px rgba(110, 231, 183, 0.4);
+        }
+
+        @media(max-width:540px) {
+            .nav-center {
+                display: none;
+            }
+        }
+
+        /* PAGE */
+        .page {
+            padding-top: 74px;
+            padding-bottom: 50px;
+            padding-left: 16px;
+            padding-right: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .breadcrumb {
+            font-size: 12px;
+            color: #475569;
+            margin-bottom: 16px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .breadcrumb a {
+            color: #6ee7b7;
+            text-decoration: none;
+        }
+
+        .breadcrumb i {
+            font-size: 10px;
+        }
+
+        .page-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(22px, 5vw, 30px);
+            font-weight: 800;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .page-title i {
+            color: #34d399;
+            margin-right: 8px;
+        }
+
+        .page-sub {
+            font-size: 13px;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 28px;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        /* CARD */
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 24px;
+            padding: 26px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px;
+        }
+
+        .inp-grp {
+            margin-bottom: 18px;
+        }
+
+        .inp-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .inp-lbl i {
+            font-size: 11px;
+        }
+
+        .inp-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .inp-field {
+            flex: 1;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+
+        .inp-field.cost:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+        }
+
+        .inp-field.sell:focus {
+            border-color: #34d399;
+            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
+        }
+
+        .inp-field::placeholder {
+            color: #1e3a5f;
+            font-size: 15px;
+        }
+
+        .inp-unit {
+            font-size: 14px;
+            font-weight: 700;
+            color: #64748b;
+            min-width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* VS divider */
+        .vs-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .vs-line {
+            flex: 1;
+            height: 1px;
+            background: #1e3a5f;
+        }
+
+        .vs-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 800;
+            color: #475569;
+            flex-shrink: 0;
+        }
+
+        /* RESULT */
+        .result-box {
+            display: none;
+            animation: popIn 0.35s ease both;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px) scale(0.97)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1)
+            }
+        }
+
+        /* Big verdict */
+        .verdict {
+            border-radius: 18px;
+            padding: 22px 20px;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .verdict.profit {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.12), rgba(52, 211, 153, 0.03));
+            border: 1px solid rgba(52, 211, 153, 0.25);
+        }
+
+        .verdict.loss {
+            background: linear-gradient(135deg, rgba(248, 113, 113, 0.12), rgba(248, 113, 113, 0.03));
+            border: 1px solid rgba(248, 113, 113, 0.25);
+        }
+
+        .verdict.breakeven {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(251, 191, 36, 0.03));
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .verdict-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .verdict-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .verdict.profit .verdict-lbl {
+            color: #059669;
+        }
+
+        .verdict.loss .verdict-lbl {
+            color: #dc2626;
+        }
+
+        .verdict.breakeven .verdict-lbl {
+            color: #d97706;
+        }
+
+        .verdict-val {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(30px, 8vw, 44px);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .verdict.profit .verdict-val {
+            color: #34d399;
+        }
+
+        .verdict.loss .verdict-val {
+            color: #f87171;
+        }
+
+        .verdict.breakeven .verdict-val {
+            color: #fbbf24;
+        }
+
+        .verdict-pct {
+            font-size: 14px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        .verdict.profit .verdict-pct {
+            background: rgba(52, 211, 153, 0.15);
+            color: #34d399;
+        }
+
+        .verdict.loss .verdict-pct {
+            background: rgba(248, 113, 113, 0.15);
+            color: #f87171;
+        }
+
+        .verdict.breakeven .verdict-pct {
+            background: rgba(251, 191, 36, 0.12);
+            color: #fbbf24;
+        }
+
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .stat-card {
+            background: #0f172a;
+            border: 1px solid #1e3a5f;
+            border-radius: 14px;
+            padding: 14px 10px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(14px, 3.5vw, 18px);
+            font-weight: 800;
+            display: block;
+            margin-bottom: 5px;
+            word-break: break-all;
+        }
+
+        .stat-lbl {
+            font-size: 10px;
+            color: #334155;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Progress bar */
+        .bar-wrap {
+            margin-bottom: 4px;
+        }
+
+        .bar-lbl-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        .bar-bg {
+            width: 100%;
+            height: 10px;
+            background: #1e293b;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .bar-cost {
+            height: 100%;
+            background: linear-gradient(90deg, #1e3a5f, #60a5fa);
+            transition: width 0.5s ease;
+        }
+
+        .bar-pl {
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+
+        .bar-pl.profit {
+            background: linear-gradient(90deg, #059669, #34d399);
+        }
+
+        .bar-pl.loss {
+            background: linear-gradient(90deg, #dc2626, #f87171);
+        }
+
+        /* Clear */
+        .clear-btn {
+            background: none;
+            border: 1px solid #1e3a5f;
+            border-radius: 10px;
+            padding: 9px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            margin-top: 14px;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            color: #fff;
+            border-color: #334155;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* INFO */
+        .info-box {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .info-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #94a3b8;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-title i {
+            color: #34d399;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-row i {
+            color: #334155;
+            font-size: 11px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .info-row b {
+            color: #64748b;
+        }
+
+        ::-webkit-scrollbar {
+            width: 1px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #34d399, #059669);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/index.html" class="nav-logo">
+                <div class="nav-logo-icon"><i class="fa-solid fa-toolbox"></i></div>
+                Tools<span>Hub</span>
+            </a>
+
+
+            <a href="/index.html" class="nav-home-btn"><i class="fa-solid fa-house"></i> Home</a>
+        </div>
+    </nav>
+
+    <div class="page">
+
+        <div class="breadcrumb">
+            <a href="/index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <span>Profit / Loss Calculator</span>
+        </div>
+
+        <h1 class="page-title"><i class="fa-solid fa-chart-line"></i>Profit / Loss Calculator</h1>
+        <p class="page-sub">Enter cost price and selling price to instantly calculate profit, loss, and margin
+            percentage.</p>
+
+        <!-- CARD -->
+        <div class="card">
+
+            <!-- Cost Price -->
+            <div class="inp-grp">
+                <div class="inp-lbl"><i class="fa-solid fa-tag" style="color:#60a5fa;"></i> Cost Price (CP)</div>
+                <div class="inp-row">
+                    <input type="number" class="inp-field cost" id="cpInp" placeholder="Enter cost price" min="0"
+                        oninput="calc()" />
+                    <span class="inp-unit">PKR</span>
+                </div>
+            </div>
+
+            <!-- VS divider -->
+            <div class="vs-divider">
+                <div class="vs-line"></div>
+                <div class="vs-badge"><i class="fa-solid fa-arrow-down"></i></div>
+                <div class="vs-line"></div>
+            </div>
+
+            <!-- Selling Price -->
+            <div class="inp-grp">
+                <div class="inp-lbl"><i class="fa-solid fa-hand-holding-dollar" style="color:#34d399;"></i> Selling
+                    Price (SP)</div>
+                <div class="inp-row">
+                    <input type="number" class="inp-field sell" id="spInp" placeholder="Enter selling price" min="0"
+                        oninput="calc()" />
+                    <span class="inp-unit">PKR</span>
+                </div>
+            </div>
+
+            <!-- RESULT -->
+            <div class="result-box" id="resultBox">
+
+                <!-- Verdict -->
+                <div class="verdict" id="verdict">
+                    <div class="verdict-icon" id="vIcon"></div>
+                    <div class="verdict-lbl" id="vLbl"></div>
+                    <div class="verdict-val" id="vVal"></div>
+                    <div class="verdict-pct" id="vPct"></div>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-num" id="sCost" style="color:#60a5fa;">—</span>
+                        <span class="stat-lbl">Cost Price</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num" id="sSell" style="color:#a78bfa;">—</span>
+                        <span class="stat-lbl">Sell Price</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num" id="sMargin">—</span>
+                        <span class="stat-lbl">Margin %</span>
+                    </div>
+                </div>
+
+                <!-- Bar -->
+                <div class="bar-wrap">
+                    <div class="bar-lbl-row">
+                        <span id="barCostLbl" style="color:#60a5fa;">Cost</span>
+                        <span id="barPlLbl">P/L</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-cost" id="barCost"></div>
+                        <div class="bar-pl" id="barPl"></div>
+                    </div>
+                </div>
+
+                <button class="clear-btn" onclick="clearAll()"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            </div>
+
+        </div>
+
+        <!-- Info -->
+        <div class="info-box">
+            <div class="info-title"><i class="fa-solid fa-circle-info"></i> Formulas Used</div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span><b>Profit</b> = Selling Price − Cost Price
+                    (when SP &gt; CP)</span></div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span><b>Loss</b> = Cost Price − Selling Price
+                    (when CP &gt; SP)</span></div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span><b>Profit %</b> = (Profit ÷ Cost Price) ×
+                    100</span></div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span><b>Loss %</b> = (Loss ÷ Cost Price) ×
+                    100</span></div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span><b>Margin %</b> = (Profit ÷ Selling Price)
+                    × 100</span></div>
+        </div>
+<br> <script>
+  atOptions = {
+    'key' : '64011bd107af3f289fba55b72d187db7',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/64011bd107af3f289fba55b72d187db7/invoke.js"></script>
+    </div>
+
+    <script>
+        function fmt(n) {
+            return parseFloat(n.toFixed(2)).toLocaleString('en-PK', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function calc() {
+            var cp = parseFloat(document.getElementById('cpInp').value);
+            var sp = parseFloat(document.getElementById('spInp').value);
+            var box = document.getElementById('resultBox');
+
+            if (isNaN(cp) || isNaN(sp) || cp <= 0 || sp <= 0) {
+                box.classList.remove('show'); return;
+            }
+
+            var diff = sp - cp;
+            var pct = (Math.abs(diff) / cp * 100);
+            var margin = diff >= 0 ? (diff / sp * 100) : 0;
+
+            var verdict = document.getElementById('verdict');
+            var vIcon = document.getElementById('vIcon');
+            var vLbl = document.getElementById('vLbl');
+            var vVal = document.getElementById('vVal');
+            var vPct = document.getElementById('vPct');
+            var sMargin = document.getElementById('sMargin');
+            var barPl = document.getElementById('barPl');
+            var barPlLbl = document.getElementById('barPlLbl');
+
+            if (diff > 0) {
+                // PROFIT
+                verdict.className = 'verdict profit';
+                vIcon.innerHTML = '<i class="fa-solid fa-arrow-trend-up" style="color:#34d399;"></i>';
+                vLbl.textContent = 'Profit';
+                vVal.textContent = 'PKR ' + fmt(diff);
+                vPct.textContent = '+' + pct.toFixed(2) + '% Profit';
+                sMargin.textContent = margin.toFixed(2) + '%';
+                sMargin.style.color = '#34d399';
+                barPl.className = 'bar-pl profit';
+                barPlLbl.style.color = '#34d399';
+                barPlLbl.textContent = 'Profit ' + pct.toFixed(1) + '%';
+            } else if (diff < 0) {
+                // LOSS
+                verdict.className = 'verdict loss';
+                vIcon.innerHTML = '<i class="fa-solid fa-arrow-trend-down" style="color:#f87171;"></i>';
+                vLbl.textContent = 'Loss';
+                vVal.textContent = 'PKR ' + fmt(Math.abs(diff));
+                vPct.textContent = '-' + pct.toFixed(2) + '% Loss';
+                sMargin.textContent = '—';
+                sMargin.style.color = '#f87171';
+                barPl.className = 'bar-pl loss';
+                barPlLbl.style.color = '#f87171';
+                barPlLbl.textContent = 'Loss ' + pct.toFixed(1) + '%';
+            } else {
+                // BREAK EVEN
+                verdict.className = 'verdict breakeven';
+                vIcon.innerHTML = '<i class="fa-solid fa-equals" style="color:#fbbf24;"></i>';
+                vLbl.textContent = 'Break Even';
+                vVal.textContent = 'No Profit / No Loss';
+                vPct.textContent = '0.00%';
+                sMargin.textContent = '0.00%';
+                sMargin.style.color = '#fbbf24';
+                barPl.className = 'bar-pl';
+                barPlLbl.style.color = '#fbbf24';
+                barPlLbl.textContent = 'Even';
+            }
+
+            document.getElementById('sCost').textContent = fmt(cp);
+            document.getElementById('sSell').textContent = fmt(sp);
+
+            // Bar widths — cost is base, diff is extra
+            var total = Math.max(cp, sp);
+            var costPct = (cp / total * 100);
+            var plPct = (Math.abs(diff) / total * 100);
+            document.getElementById('barCost').style.width = costPct + '%';
+            barPl.style.width = plPct + '%';
+            document.getElementById('barCostLbl').textContent = 'Cost ' + costPct.toFixed(1) + '%';
+
+            box.classList.add('show');
+        }
+
+        function clearAll() {
+            document.getElementById('cpInp').value = '';
+            document.getElementById('spInp').value = '';
+            document.getElementById('resultBox').classList.remove('show');
+        }
+    </script>
+
+</body>
+
+</html>

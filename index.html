@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>ToolsHub – Free Online Calculators & Converter Tools</title>
+    <meta name="description"
+        content="Free online tools: calculators, currency converter, USDT to PKR, math calculator, crypto tools and more. Fast, accurate, mobile-friendly tools for everyone.">
+    <meta name="keywords"
+        content="online calculator, USDT to PKR converter, crypto converter, math calculator, free tools, currency converter, online tools, percentage calculator, BMI calculator, loan calculator">
+    <meta name="author" content="ToolsHub">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="ToolsHub – Free Online Calculators & Tools">
+    <meta property="og:description" content="Fast & free online tools – calculators, crypto converters, and much more.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://toolshub.com/">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #07090f;
+            --bg2: #0d1117;
+            --bg3: #111827;
+            --accent: #6ee7b7;
+            --blue: #60a5fa;
+            --purple: #a78bfa;
+            --orange: #fb923c;
+            --pink: #f472b6;
+            --yellow: #fbbf24;
+            --red: #f87171;
+            --green: #34d399;
+            --text: #e2e8f0;
+            --text2: #94a3b8;
+            --border: rgba(255, 255, 255, 0.07);
+            --card-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* BG FX */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse 70% 50% at 20% -10%, rgba(110, 231, 183, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 60% at 85% 90%, rgba(96, 165, 250, 0.07) 0%, transparent 55%),
+                radial-gradient(ellipse 40% 40% at 60% 40%, rgba(167, 139, 250, 0.04) 0%, transparent 50%);
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: rgba(7, 9, 15, 0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), var(--blue));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            color: #000;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-center a {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text2);
+            text-decoration: none;
+            padding: 7px 15px;
+            border-radius: 20px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .nav-center a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-center a i {
+            font-size: 12px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-badge {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: rgba(110, 231, 183, 0.12);
+            color: var(--accent);
+            border: 1px solid rgba(110, 231, 183, 0.28);
+            border-radius: 20px;
+            padding: 5px 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-badge i {
+            font-size: 9px;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            color: var(--text2);
+            cursor: pointer;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+
+        .hamburger:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 2px;
+            padding: 12px 20px 16px;
+            background: rgba(7, 9, 15, 0.96);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-menu a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text2);
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .mobile-menu a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-menu a i {
+            width: 16px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--accent);
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        @media(max-width:700px) {
+
+            .nav-center,
+            .nav-badge {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        /* ── HERO ── */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 56px;
+            animation: fadeUp 0.7s ease both;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(110, 231, 183, 0.08);
+            border: 1px solid rgba(110, 231, 183, 0.2);
+            border-radius: 50px;
+            padding: 7px 20px;
+            margin-bottom: 24px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(32px, 6vw, 66px);
+            font-weight: 800;
+            line-height: 1.08;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        h1 .hl {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: clamp(14px, 2vw, 17px);
+            color: var(--text2);
+            max-width: 540px;
+            margin: 0 auto 40px;
+            line-height: 1.75;
+        }
+
+        .hero-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hstat {
+            text-align: center;
+        }
+
+        .hstat-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 30px;
+            font-weight: 800;
+            color: #fff;
+            display: block;
+            line-height: 1;
+        }
+
+        .hstat-num i {
+            font-size: 24px;
+            color: var(--accent);
+        }
+
+        .hstat-lbl {
+            font-size: 11px;
+            color: var(--text2);
+            letter-spacing: 1.5px;
+            margin-top: 4px;
+            display: block;
+        }
+
+        /* Divider */
+        .divider {
+            width: 1px;
+            height: 36px;
+            background: var(--border);
+        }
+
+        @media(max-width:480px) {
+            .divider {
+                display: none;
+            }
+        }
+
+        /* ── SEARCH ── */
+        .search-wrap {
+            max-width: 540px;
+            margin: 0 auto 50px;
+            position: relative;
+            animation: fadeUp 0.7s 0.1s ease both;
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            border-radius: 50px;
+            padding: 15px 50px 15px 52px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: rgba(110, 231, 183, 0.45);
+            background: rgba(110, 231, 183, 0.04);
+            box-shadow: 0 0 0 3px rgba(110, 231, 183, 0.07);
+        }
+
+        .search-input::placeholder {
+            color: rgba(148, 163, 184, 0.45);
+        }
+
+        .s-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text2);
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+        .s-clear {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text2);
+            cursor: pointer;
+            font-size: 13px;
+            display: none;
+            transition: color 0.2s;
+        }
+
+        .s-clear:hover {
+            color: #fff;
+        }
+
+        /* ── SECTION TITLE ── */
+        .sec-hd {
+            font-family: 'Syne', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text2);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sec-hd i {
+            color: var(--accent);
+            font-size: 13px;
+        }
+
+        .sec-hd::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── TOOLS GRID ── */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+            gap: 16px;
+            margin-bottom: 64px;
+        }
+
+        /* ── TOOL CARD ── */
+        .tool-card {
+            position: relative;
+            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 26px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+            transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+            animation: fadeUp 0.55s ease both;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.13);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            background: linear-gradient(135deg, var(--c-accent, rgba(110, 231, 183, 0.06)), transparent);
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Shine */
+        .tool-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -70%;
+            width: 35%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.035), transparent);
+            transform: skewX(-18deg);
+            transition: left 0.55s;
+        }
+
+        .tool-card:hover::after {
+            left: 130%;
+        }
+
+        /* Featured */
+        .tool-card.featured {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(110, 231, 183, 0.055), rgba(96, 165, 250, 0.035));
+            border-color: rgba(110, 231, 183, 0.2);
+        }
+
+        @media(max-width:620px) {
+            .tool-card.featured {
+                grid-column: span 1;
+            }
+        }
+
+        .feat-inner {
+            display: flex;
+            gap: 22px;
+            align-items: flex-start;
+        }
+
+        @media(max-width:520px) {
+            .feat-inner {
+                flex-direction: column;
+            }
+        }
+
+        .feat-body {
+            flex: 1;
+        }
+
+        .card-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .tool-ico {
+            width: 52px;
+            height: 52px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .tool-ico i {
+            font-size: 22px;
+        }
+
+        .t-badge {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 4px 11px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .b-hot {
+            background: rgba(251, 146, 60, 0.14);
+            color: var(--orange);
+            border: 1px solid rgba(251, 146, 60, 0.28);
+        }
+
+        .b-new {
+            background: rgba(110, 231, 183, 0.13);
+            color: var(--accent);
+            border: 1px solid rgba(110, 231, 183, 0.28);
+        }
+
+        .b-free {
+            background: rgba(96, 165, 250, 0.13);
+            color: var(--blue);
+            border: 1px solid rgba(96, 165, 250, 0.28);
+        }
+
+        .b-soon {
+            background: rgba(167, 139, 250, 0.13);
+            color: var(--purple);
+            border: 1px solid rgba(167, 139, 250, 0.28);
+        }
+
+        .t-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .t-desc {
+            font-size: 13px;
+            color: var(--text2);
+            line-height: 1.65;
+            margin-bottom: 18px;
+        }
+
+        .t-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .t-tag {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text2);
+            border: 1px solid var(--border);
+        }
+
+        .card-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .open-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 7px 16px;
+            transition: all 0.2s;
+        }
+
+        .tool-card:hover .open-btn {
+            background: var(--c-accent, rgba(110, 231, 183, 0.14));
+            border-color: var(--c-border, rgba(110, 231, 183, 0.32));
+            color: var(--c-text, var(--accent));
+        }
+
+        .t-meta {
+            font-size: 11px;
+            color: rgba(148, 163, 184, 0.45);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .t-meta i {
+            font-size: 10px;
+        }
+
+        /* Coming soon card */
+        .tool-card.coming {
+            opacity: 0.65;
+            cursor: default;
+        }
+
+        .tool-card.coming:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: var(--border);
+        }
+
+        .tool-card.coming::after {
+            display: none;
+        }
+
+        .tool-card.coming:hover::before {
+            opacity: 0;
+        }
+
+        .tool-card.coming:hover .open-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+
+        /* No results */
+        .no-results {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text2);
+            font-size: 15px;
+            display: none;
+        }
+
+        .no-results i {
+            font-size: 32px;
+            color: rgba(148, 163, 184, 0.3);
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        /* ── CTA ── */
+        .cta-banner {
+            background: linear-gradient(135deg, rgba(110, 231, 183, 0.07), rgba(96, 165, 250, 0.05));
+            border: 1px solid rgba(110, 231, 183, 0.15);
+            border-radius: 22px;
+            padding: 44px 36px;
+            text-align: center;
+            margin-bottom: 64px;
+            animation: fadeUp 0.6s 0.2s ease both;
+        }
+
+        .cta-icon {
+            font-size: 36px;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .cta-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .cta-desc {
+            font-size: 14px;
+            color: var(--text2);
+            line-height: 1.7;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid var(--border);
+            padding: 52px 20px 32px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media(max-width:800px) {
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 28px;
+            }
+        }
+
+        @media(max-width:480px) {
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .f-brand {}
+
+        .f-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            text-decoration: none;
+        }
+
+        .f-logo .f-logo-icon {
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, var(--accent), var(--blue));
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #000;
+        }
+
+        .f-logo span {
+            color: var(--accent);
+        }
+
+        .f-desc {
+            font-size: 13px;
+            color: var(--text2);
+            line-height: 1.75;
+            margin-bottom: 20px;
+        }
+
+        .f-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .f-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text2);
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .f-social a:hover {
+            background: rgba(110, 231, 183, 0.12);
+            color: var(--accent);
+            border-color: rgba(110, 231, 183, 0.3);
+        }
+
+        .f-col-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .f-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .f-links a {
+            font-size: 13px;
+            color: var(--text2);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .f-links a i {
+            font-size: 11px;
+            color: rgba(148, 163, 184, 0.4);
+            width: 14px;
+        }
+
+        .f-links a:hover {
+            color: #fff;
+        }
+
+        .f-links a:hover i {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+
+        .f-copy {
+            font-size: 12px;
+            color: rgba(148, 163, 184, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .f-copy i {
+            color: rgba(110, 231, 183, 0.4);
+        }
+
+        .f-bottom-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .f-bottom-links a {
+            font-size: 12px;
+            color: rgba(148, 163, 184, 0.4);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .f-bottom-links a:hover {
+            color: var(--text2);
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.45;
+                transform: scale(0.78);
+            }
+        }
+
+        .tool-card:nth-child(1) {
+            animation-delay: .04s
+        }
+
+        .tool-card:nth-child(2) {
+            animation-delay: .09s
+        }
+
+        .tool-card:nth-child(3) {
+            animation-delay: .14s
+        }
+
+        .tool-card:nth-child(4) {
+            animation-delay: .19s
+        }
+
+        .tool-card:nth-child(5) {
+            animation-delay: .24s
+        }
+
+        .tool-card:nth-child(6) {
+            animation-delay: .29s
+        }
+
+        .tool-card:nth-child(7) {
+            animation-delay: .34s
+        }
+
+        .tool-card:nth-child(8) {
+            animation-delay: .39s
+        }
+
+        .tool-card:nth-child(9) {
+            animation-delay: .44s
+        }
+
+        .tool-card:nth-child(10) {
+            animation-delay: .49s
+        }
+
+        .tool-card:nth-child(11) {
+            animation-delay: .54s
+        }
+
+        .tool-card:nth-child(12) {
+            animation-delay: .59s
+        }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:768px) {
+            .hero {
+                padding: 52px 16px 40px;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+        }
+
+        @media(max-width:500px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                gap: 18px;
+            }
+
+            .cta-banner {
+                padding: 30px 20px;
+            }
+        }
+
+        /* 1. Scrollbar ki puri width/patti */
+        ::-webkit-scrollbar {
+            width: 1px;
+            /* Scrollbar kitni chori hogi */
+        }
+
+        /* 2. Track (Woh rasta jis par scroll chalta hai - White background) */
+        ::-webkit-scrollbar-track {
+            background: #0aa3ade3;
+            border-left: 1px solid #1abe51dc;
+            /* Halka sa border taake white page se alag dikhe */
+        }
+
+        /* 3. Thumb (Woh hissa jo pakar kar niche khinchte hain - Your Gold Gradient) */
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--gold), var(--gold2), #fff);
+            border-radius: 10px;
+            /* Is se corners round ho jayenge */
+            border: 3px solid #29e90fde;
+            /* Is se thumb ke charon taraf thori jagah ban jayegi (paddling effect) */
+        }
+
+        /* 4. Hover effect (Jab mouse scrollbar par jaye to thora dark ho jaye) */
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #b8860b, var(--gold), var(--gold2));
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-toolbox"></i></div>
+                Tools<span>Hub</span>
+            </a>
+            <div class="nav-center">
+                <a href="#tools"><i class="fa-solid fa-grid-2"></i> All Tools</a>
+                <a href="#coming"><i class="fa-regular fa-clock"></i> Coming Soon</a>
+                <a href="#footer"><i class="fa-solid fa-envelope"></i> Contact</a>
+            </div>
+            <div class="nav-right">
+                <div class="nav-badge"><i class="fa-solid fa-shield-check"></i> Free Forever</div>
+                <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+                    <i class="fa-solid fa-bars" id="hambIcon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#tools"><i class="fa-solid fa-grid-2"></i> All Tools</a>
+        <a href="#coming"><i class="fa-regular fa-clock"></i> Coming Soon</a>
+        <a href="crypto-converter.html"><i class="fa-solid fa-coins"></i> USDT to PKR</a>
+        <a href="calculator.html"><i class="fa-solid fa-calculator"></i> Calculator</a>
+        <a href="#footer"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </div>
+
+    <div class="wrap">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-tag">
+                <div class="live-dot"></div>Free Online Tools
+            </div>
+            <h1>Your All-in-One<br><span class="hl">Tools & Calculators</span></h1>
+            <p class="hero-desc">
+                Fast, free, and accurate online tools. Calculators, converters, crypto tools — everything in one place.
+            </p>
+            <div class="hero-stats">
+                <div class="hstat">
+                    <span class="hstat-num" id="toolCount">10+</span>
+                    <span class="hstat-lbl">Tools Available</span>
+                </div>
+                <div class="divider"></div>
+                <div class="hstat">
+                    <span class="hstat-num">100%</span>
+                    <span class="hstat-lbl">Free Forever</span>
+                </div>
+                <div class="divider"></div>
+                <div class="hstat">
+                    <span class="hstat-num"><i class="fa-solid fa-bolt"></i></span>
+                    <span class="hstat-lbl">Instant Results</span>
+                </div>
+                <div class="divider"></div>
+                <div class="hstat">
+                    <span class="hstat-num"><i class="fa-solid fa-mobile-screen"></i></span>
+                    <span class="hstat-lbl">Mobile Friendly</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEARCH -->
+        <div class="search-wrap">
+            <i class="fa-solid fa-magnifying-glass s-icon"></i>
+            <input type="text" class="search-input" id="searchInp"
+                placeholder="Search tools... (e.g. calculator, crypto, converter)" oninput="doSearch(this.value)" />
+            <button class="s-clear" id="clearBtn" onclick="clearSearch()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- TOOLS SECTION -->
+        <section id="tools">
+            <div class="sec-hd"><i class="fa-solid fa-sparkles"></i> Available Tools</div>
+
+            <div class="tools-grid" id="toolsGrid">
+
+                <!-- ① FEATURED: USDT Converter -->
+                <a href="/usdt-to-pkr/index.html" class="tool-card featured"
+                    style="--c-accent:rgba(110,231,183,0.1);--c-border:rgba(110,231,183,0.32);--c-text:#6ee7b7;"
+                    data-name="usdt pkr crypto converter currency live rate tether">
+                    <div class="feat-inner">
+                        <div class="tool-ico"
+                            style="background:linear-gradient(135deg,rgba(38,161,123,0.28),rgba(26,122,92,0.14));">
+                            <i class="fa-brands fa-bitcoin" style="color:#26a17b;"></i>
+                        </div>
+                        <div class="feat-body">
+                            <div class="card-head" style="margin-bottom:10px;">
+                                <div class="t-name">USDT → PKR Converter</div>
+                                <span class="t-badge b-hot"><i class="fa-solid fa-fire"></i> HOT</span>
+                            </div>
+                            <p class="t-desc">Live auto-updating USDT to Pakistani Rupee converter. Real-time rate from
+                                multiple APIs, quick-select amounts, and swap mode. Perfect for crypto traders.</p>
+                            <div class="t-tags">
+                                <span class="t-tag"><i class="fa-solid fa-signal" style="font-size:9px;"></i> Live
+                                    Rate</span>
+                                <span class="t-tag">Auto Refresh</span>
+                                <span class="t-tag">USDT / PKR</span>
+                                <span class="t-tag">Crypto</span>
+                            </div>
+                            <div class="card-foot">
+                                <span class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open
+                                    Tool</span>
+                                <span class="t-meta"><i class="fa-solid fa-star"></i> Featured</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- ② Hisab Calculator -->
+                <a href="/basic/index.html" class="tool-card"
+                    style="--c-accent:rgba(251,146,60,0.1);--c-border:rgba(251,146,60,0.3);--c-text:#fb923c;"
+                    data-name="hisab calculator math basic arithmetic add subtract multiply divide">
+                    <div class="card-head">
+                        <div class="tool-ico"
+                            style="background:linear-gradient(135deg,rgba(251,146,60,0.24),rgba(245,120,20,0.1));">
+                            <i class="fa-solid fa-calculator" style="color:#fb923c;"></i>
+                        </div>
+                        <span class="t-badge b-new"><i class="fa-solid fa-sparkles"></i> NEW</span>
+                    </div>
+                    <div class="t-name">Basic Calculator</div>
+                    <p class="t-desc">Simple and fast calculator for everyday use. Addition, subtraction,
+                        multiplication, division — all in one place.</p>
+                    <div class="t-tags">
+                        <span class="t-tag">Math</span>
+                        <span class="t-tag">Basic</span>
+                        <span class="t-tag">Fast</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</span>
+                        <span class="t-meta"><i class="fa-solid fa-calculator"></i> Calculator</span>
+                    </div>
+                </a>
+
+                <!-- ③ Percentage Calculator -->
+                <a href="/percentage/index.html" class="tool-card"
+                    style="--c-accent:rgba(96,165,250,0.1);--c-border:rgba(96,165,250,0.3);--c-text:#60a5fa;"
+                    data-name="percentage calculator percent discount profit loss change">
+                    <div class="card-head">
+                        <div class="tool-ico"
+                            style="background:linear-gradient(135deg,rgba(96,165,250,0.24),rgba(60,130,250,0.1));">
+                            <i class="fa-solid fa-percent" style="color:#60a5fa;"></i>
+                        </div>
+                        <span class="t-badge b-free"><i class="fa-solid fa-tag"></i> FREE</span>
+                    </div>
+                    <div class="t-name">Percentage Calculator</div>
+                    <p class="t-desc">Calculate percentage, discount, profit/loss, and percentage change instantly.
+                        Great for students and businesses.</p>
+                    <div class="t-tags">
+                        <span class="t-tag">Discount</span>
+                        <span class="t-tag">Profit / Loss</span>
+                        <span class="t-tag">% Change</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</span>
+                        <span class="t-meta"><i class="fa-solid fa-chart-line"></i> Finance</span>
+                    </div>
+                </a>
+
+                <!-- ④ Age Calculator -->
+                <a href="/age-calculator/index.html" class="tool-card"
+                    style="--c-accent:rgba(167,139,250,0.1);--c-border:rgba(167,139,250,0.3);--c-text:#a78bfa;"
+                    data-name="age calculator birthday date of birth years months days">
+                    <div class="card-head">
+                        <div class="tool-ico"
+                            style="background:linear-gradient(135deg,rgba(167,139,250,0.24),rgba(140,100,250,0.1));">
+                            <i class="fa-solid fa-cake-candles" style="color:#a78bfa;"></i>
+                        </div>
+                        <span class="t-badge b-free"><i class="fa-solid fa-tag"></i> FREE</span>
+                    </div>
+                    <div class="t-name">Age Calculator</div>
+                    <p class="t-desc">Calculate your exact age from date of birth — in years, months, and days. Useful
+                        for forms, NIC applications, and more.</p>
+                    <div class="t-tags">
+                        <span class="t-tag">Birthday</span>
+                        <span class="t-tag">DOB</span>
+                        <span class="t-tag">Years / Days</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</span>
+                        <span class="t-meta"><i class="fa-regular fa-calendar"></i> Utility</span>
+                    </div>
+                </a>
+
+                <!-- ⑤ Currency Converter -->
+                <a href="/currency/index.html" class="tool-card"
+                    style="--c-accent:rgba(251,191,36,0.1);--c-border:rgba(251,191,36,0.3);--c-text:#fbbf24;"
+                    data-name="currency converter USD PKR dollar rupee exchange rate 150 currencies">
+                    <div class="card-head">
+                        <div class="tool-ico"
+                            style="background:linear-gradient(135deg,rgba(251,191,36,0.24),rgba(220,160,10,0.1));">
+                            <i class="fa-solid fa-money-bill-transfer" style="color:#fbbf24;"></i>
+                        </div>
+                        <span class="t-badge b-new"><i class="fa-solid fa-sparkles"></i> NEW</span>
+                    </div>
+                    <div class="t-name">Currency Converter</div>
+                    <p class="t-desc">Convert USD, EUR, GBP, SAR to PKR and 150+ other currencies with live exchange
+                        rates updated in real time.</p>
+                    <div class="t-tags">
+                        <span class="t-tag">USD / PKR</span>
+                        <span class="t-tag">Live Rate</span>
+                        <span class="t-tag">150+ Currencies</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</span>
+                        <span class="t-meta"><i class="fa-solid fa-coins"></i> Finance</span>
+                    </div>
+                </a>
+
+                <!-- ⑥ Loan Calculator -->
+                <a href="/loan-calculator/index.html" class="tool-card"
+                    style="--c-accent:rgba(244,114,182,0.1);--c-border:rgba(244,114,182,0.3);--c-text:#f472b6;"
+                    data-name="loan calculator installment monthly payment bank interest car home">
+                    <div class="card-head">
+                        <div class="tool-ico"
+                            style="background:linear-gradient(135deg,rgba(244,114,182,0.24),rgba(220,80,160,0.1));">
+                            <i class="fa-solid fa-building-columns" style="color:#f472b6;"></i>
+                        </div>
+                        <span class="t-badge b-free"><i class="fa-solid fa-tag"></i> FREE</span>
+                    </div>
+                    <div class="t-name">Loan / EMI Calculator</div>
+                    <p class="t-desc">Calculate your monthly loan installment (EMI). Works for bank loans, car finance,
+                        home loans, and personal loans.</p>
+                    <div class="t-tags">
+                        <span class="t-tag">Bank Loan</span>
+                        <span class="t-tag">EMI</span>
+                        <span class="t-tag">Interest Rate</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</span>
+                        <span class="t-meta"><i class="fa-solid fa-landmark"></i> Finance</span>
+                    </div>
+                </a>
+
+                <!-- ⑦ BMI Calculator -->
+                <a href="/BMI-Calculator/index.html" class="tool-card"
+                    style="--c-accent:rgba(52,211,153,0.1);--c-border:rgba(52,211,153,0.3);--c-text:#34d399;"
+                    data-name="BMI calculator weight height health body mass index overweight">
+                    <div class="card-head">
+                        <div class="tool-ico"
+                            style="background:linear-gradient(135deg,rgba(52,211,153,0.24),rgba(16,185,129,0.1));">
+                            <i class="fa-solid fa-weight-scale" style="color:#34d399;"></i>
+                        </div>
+                        <span class="t-badge b-free"><i class="fa-solid fa-tag"></i> FREE</span>
+                    </div>
+                    <div class="t-name">BMI Calculator</div>
+                    <p class="t-desc">Calculate your Body Mass Index from height and weight. Instantly know if you're
+                        underweight, healthy, or overweight.</p>
+                    <div class="t-tags">
+                        <span class="t-tag">Health</span>
+                        <span class="t-tag">Weight</span>
+                        <span class="t-tag">BMI Index</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</span>
+                        <span class="t-meta"><i class="fa-solid fa-heart-pulse"></i> Health</span>
+                    </div>
+                </a>
+
+                <!-- ⑧ Unit Converter -->
+                <a href="/unit-converter/index.html" class="tool-card"
+                    style="--c-accent:rgba(248,113,113,0.1);--c-border:rgba(248,113,113,0.3);--c-text:#f87171;"
+                    data-name="unit converter km miles kg pounds temperature celsius fahrenheit length weight area">
+                    <div class="card-head">
+                        <div class="tool-ico"
+                            style="background:linear-gradient(135deg,rgba(248,113,113,0.24),rgba(230,80,80,0.1));">
+                            <i class="fa-solid fa-ruler-combined" style="color:#f87171;"></i>
+                        </div>
+                        <span class="t-badge b-free"><i class="fa-solid fa-tag"></i> FREE</span>
+                    </div>
+                    <div class="t-name">Unit Converter</div>
+                    <p class="t-desc">Convert length, weight, temperature, and area units instantly. km to miles, kg to
+                        pounds, Celsius to Fahrenheit, and more.</p>
+                    <div class="t-tags">
+                        <span class="t-tag">Length</span>
+                        <span class="t-tag">Weight</span>
+                        <span class="t-tag">Temperature</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</span>
+                        <span class="t-meta"><i class="fa-solid fa-ruler"></i> Converter</span>
+                    </div>
+                </a>
+
+                <!-- ⑨ Date Calculator -->
+                <a href="/date-calculator/index.html" class="tool-card"
+                    style="--c-accent:rgba(248,113,113,0.1);--c-border:rgba(248,113,113,0.3);--c-text:#f87171;"
+                    data-name="date calculator days between dates deadline">
+                    <div class="card-head">
+                        <div class="tool-ico"
+                            style="background:linear-gradient(135deg,rgba(248,113,113,0.24),rgba(230,80,80,0.1));">
+                            <i class="fa-regular fa-calendar-days" style="color:#a78bfa;"></i>
+                        </div>
+                        <span class="t-badge b-soon"><i class="fa-regular fa-clock"></i> Free</span>
+                    </div>
+                    <div class="t-name">Date Calculator</div>
+                    <p class="t-desc">Calculate days between two dates, add or subtract days from a date, and find
+                        deadlines with ease.</p>
+                    <div class="t-tags">
+                        <span class="t-tag">Days Between</span>
+                        <span class="t-tag">Deadline</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</span>
+                        <span class="t-meta"><i class="fa-solid fa-ruler"></i> </i> Utility</span>
+                    </div>
+                </a>
+
+
+                <!-- ⑩ Scientific Calculator -->
+                <a href="/scientific-calculator/index.html" class="tool-card"
+                    style="--c-accent:rgba(96,165,250,0.1);--c-border:rgba(96,165,250,0.3);--c-text:#60a5fa;"
+                    data-name="scientific calculator trigonometry sin cos tan logarithm advanced">
+                    <div class="card-head">
+                        <div class="tool-ico"
+                            style="background:linear-gradient(135deg,rgba(96,165,250,0.24),rgba(60,130,250,0.1));">
+                            <i class="fa-solid fa-square-root-variable" style="color:#60a5fa;"></i>
+                        </div>
+                        <span class="t-badge b-new"><i class="fa-solid fa-sparkles"></i> NEW</span>
+                    </div>
+                    <div class="t-name">Scientific Calculator</div>
+                    <p class="t-desc">Advanced calculator with trigonometry, logarithms, exponents, and more. Built for
+                        students and engineers.</p>
+                    <div class="t-tags">
+                        <span class="t-tag">Trigonometry</span>
+                        <span class="t-tag">Logarithm</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</span>
+                        <span class="t-meta"><i class="fa-solid fa-flask"></i> Science</span>
+                    </div>
+                </a>
+
+                <!-- ⑪ GST Calculator -->
+                <a href="/gst-calculator/inddex.html" class="tool-card"
+                    style="--c-accent:rgba(251,191,36,0.1);--c-border:rgba(251,191,36,0.3);--c-text:#fbbf24;"
+                    data-name="GST calculator tax VAT sales tax Pakistan">
+                    <div class="card-head">
+                        <div class="tool-ico"
+                            style="background:linear-gradient(135deg,rgba(251,191,36,0.24),rgba(220,160,10,0.1));">
+                            <i class="fa-solid fa-file-invoice-dollar" style="color:#fbbf24;"></i>
+                        </div>
+                        <span class="t-badge b-new"><i class="fa-solid fa-sparkles"></i> NEW</span>
+                    </div>
+                    <div class="t-name">GST / Tax Calculator</div>
+                    <p class="t-desc">Calculate GST, VAT, and sales tax quickly. Add or remove tax from any amount with
+                        a single click.</p>
+                    <div class="t-tags">
+                        <span class="t-tag">GST</span>
+                        <span class="t-tag">VAT</span>
+                        <span class="t-tag">Tax</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</span>
+                        <span class="t-meta"><i class="fa-solid fa-receipt"></i> Finance</span>
+                    </div>
+                </a>
+
+                <!-- ⑫ Profit/Loss Calculator -->
+                <a href="/profit-loss-colculator/index.html" class="tool-card"
+                    style="--c-accent:rgba(52,211,153,0.1);--c-border:rgba(52,211,153,0.3);--c-text:#34d399;"
+                    data-name="profit loss calculator business trade margin revenue">
+                    <div class="card-head">
+                        <div class="tool-ico"
+                            style="background:linear-gradient(135deg,rgba(52,211,153,0.24),rgba(16,185,129,0.1));">
+                            <i class="fa-solid fa-chart-line" style="color:#34d399;"></i>
+                        </div>
+                        <span class="t-badge b-new"><i class="fa-solid fa-sparkles"></i> NEW</span>
+                    </div>
+                    <div class="t-name">Profit / Loss Calculator</div>
+                    <p class="t-desc">Calculate profit, loss, and margin percentage for any business transaction, trade,
+                        or investment easily.</p>
+                    <div class="t-tags">
+                        <span class="t-tag">Profit %</span>
+                        <span class="t-tag">Margin</span>
+                        <span class="t-tag">Trade</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="open-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</span>
+                        <span class="t-meta"><i class="fa-solid fa-chart-pie"></i> Finance</span>
+                    </div>
+                </a>
+                <!-- No results -->
+                <div class="no-results" id="noResults">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    No tools found for "<span id="noQ"></span>"<br>
+                    <small style="color:rgba(148,163,184,0.4);font-size:12px;">Try different keywords</small>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-banner" id="coming">
+            <div class="cta-icon"><i class="fa-solid fa-rocket"></i></div>
+            <div class="cta-title">Want a New Tool?</div>
+            <p class="cta-desc">Suggest any calculator or converter — we'll build it! All tools are free and will always
+                remain free.</p>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="footer-inner">
+
+            <!-- Brand -->
+            <div class="f-brand">
+                <a href="/index.html" class="f-logo">
+                    <div class="f-logo-icon"><i class="fa-solid fa-toolbox"></i></div>
+                    Tools<span>Hub</span>
+                </a>
+                <p class="f-desc">Free online tools and calculators for everyone. Fast, accurate, and mobile-friendly —
+                    built for real people.</p>
+                <div class="f-social">
+                    <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Tools -->
+            <div>
+                <div class="f-col-title">Popular Tools</div>
+                <div class="f-links">
+                    <a href="/usdt-to-pkr/index.html"><i class="fa-brands fa-bitcoin"></i> USDT to PKR</a>
+                    <a href="/basic/index.html"><i class="fa-solid fa-calculator"></i> Basic Calculator</a>
+                    <a href="/percentage-calculator/index.html"><i class="fa-solid fa-percent"></i> Percentage Calculator</a>
+                    <a href="/currency/index.html"><i class="fa-solid fa-money-bill-transfer"></i> Currency Converter</a>
+                    <a href="/BMI-Calculator/index.html"><i class="fa-solid fa-weight-scale"></i> BMI Calculator</a>
+                </div>
+            </div>
+
+            <!-- More Tools -->
+            <div>
+                <div class="f-col-title">More Tools</div>
+                <div class="f-links">
+                    <a href="/age-calculator/index.html"><i class="fa-solid fa-cake-candles"></i> Age Calculator</a>
+                    <a href="/loan-calculator/index.html"><i class="fa-solid fa-building-columns"></i> Loan / EMI</a>
+                    <a href="/unit-converter/index.html"><i class="fa-solid fa-ruler-combined"></i> Unit Converter</a>
+                    <a href="/date-calculator/index.html"><i class="fa-regular fa-calendar-days"></i> Date Calculator</a>
+                    <a href="/scientific-calculator/index.html"><i class="fa-solid fa-square-root-variable"></i> Scientific
+                        Calc</a>
+                </div>
+            </div>
+
+            <!-- Company -->
+            <div>
+                <div class="f-col-title">Company</div>
+                <div class="f-links">
+                    <a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a>
+                    <a href="privacy.html"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
+                    <a href="terms.html"><i class="fa-solid fa-file-lines"></i> Terms of Use</a>
+                    <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+                    <a href="sitemap.html"><i class="fa-solid fa-sitemap"></i> Sitemap</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p class="f-copy">
+                <i class="fa-regular fa-copyright"></i>
+                2025 ToolsHub · All Rights Reserved · Free Online Tools
+            </p>
+            <div class="f-bottom-links">
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="sitemap.html">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        var allCards = [];
+
+        window.onload = function () {
+            document.querySelectorAll('.tool-card').forEach(function (c) {
+                allCards.push(c);
+            });
+            // Count only non-coming-soon cards
+            var live = document.querySelectorAll('.tool-card:not(.coming)').length;
+            document.getElementById('toolCount').textContent = live + '+';
+        };
+
+        function doSearch(q) {
+            q = q.trim().toLowerCase();
+            document.getElementById('clearBtn').style.display = q ? 'block' : 'none';
+            var found = 0;
+            allCards.forEach(function (c) {
+                if (!c.dataset.name) return;
+                var match =
+                    c.dataset.name.toLowerCase().includes(q) ||
+                    c.querySelector('.t-name').textContent.toLowerCase().includes(q) ||
+                    c.querySelector('.t-desc').textContent.toLowerCase().includes(q);
+                var show = !q || match;
+                c.style.display = show ? '' : 'none';
+                if (show) found++;
+            });
+            var nr = document.getElementById('noResults');
+            document.getElementById('noQ').textContent = q;
+            nr.style.display = (q && found === 0) ? 'block' : 'none';
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInp').value = '';
+            doSearch('');
+        }
+
+        function toggleMenu() {
+            var m = document.getElementById('mobileMenu');
+            var ic = document.getElementById('hambIcon');
+            m.classList.toggle('open');
+            ic.className = m.classList.contains('open') ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        }
+
+        // Close mobile menu on outside click
+        document.addEventListener('click', function (e) {
+            var nav = document.querySelector('nav');
+            var menu = document.getElementById('mobileMenu');
+            if (!nav.contains(e.target) && !menu.contains(e.target)) {
+                menu.classList.remove('open');
+                document.getElementById('hambIcon').className = 'fa-solid fa-bars';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

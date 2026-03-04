@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- SEO -->
+    <title>Unit Converter – Length, Weight, Temperature, Area | ToolsHub</title>
+    <meta name="description"
+        content="Free online unit converter. Convert length (km to miles), weight (kg to pounds), temperature (Celsius to Fahrenheit), and area units instantly. Fast and mobile-friendly.">
+    <meta name="keywords"
+        content="unit converter, km to miles, kg to pounds, celsius to fahrenheit, length converter, weight converter, temperature converter, area converter, online unit converter, free unit conversion tool">
+    <meta name="author" content="ToolsHub">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="Unit Converter – Length, Weight, Temperature, Area | ToolsHub">
+    <meta property="og:description"
+        content="Convert any unit instantly — length, weight, temperature, area. Free, fast, and mobile-friendly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calculator-seven-pi-12.vercel.app/unit-converter/">
+    <link rel="canonical" href="https://calculator-seven-pi-12.vercel.app/unit-converter/">
+    <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Unit Converter","url":"https://calculator-seven-pi-12.vercel.app/unit-converter/","description":"Free online unit converter for length, weight, temperature and area.","applicationCategory":"UtilitiesApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            touch-action: manipulation;
+        }
+
+        body {
+            background: #0f172a;
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 18px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .nav-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6ee7b7, #60a5fa);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .nav-logo span {
+            color: #6ee7b7;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .nav-center a {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 6px 13px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-center a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-center a.active {
+            color: #f87171;
+            background: rgba(248, 113, 113, 0.1);
+        }
+
+        .nav-center a i {
+            font-size: 11px;
+        }
+
+        .nav-home-btn {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #000;
+            background: linear-gradient(135deg, #6ee7b7, #34d399);
+            border: none;
+            border-radius: 20px;
+            padding: 7px 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-home-btn:hover {
+            box-shadow: 0 0 16px rgba(110, 231, 183, 0.4);
+        }
+
+        @media(max-width:540px) {
+            .nav-center {
+                display: none;
+            }
+        }
+
+        /* PAGE */
+        .page {
+            padding-top: 74px;
+            padding-bottom: 50px;
+            padding-left: 16px;
+            padding-right: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .breadcrumb {
+            font-size: 12px;
+            color: #475569;
+            margin-bottom: 16px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .breadcrumb a {
+            color: #6ee7b7;
+            text-decoration: none;
+        }
+
+        .breadcrumb i {
+            font-size: 10px;
+        }
+
+        .page-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(22px, 5vw, 30px);
+            font-weight: 800;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .page-title i {
+            color: #f87171;
+            margin-right: 8px;
+        }
+
+        .page-sub {
+            font-size: 13px;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 24px;
+            line-height: 1.6;
+            max-width: 420px;
+        }
+
+        /* CATEGORY TABS */
+        .cat-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 24px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .cat-tab {
+            padding: 9px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid #334155;
+            background: transparent;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .cat-tab i {
+            font-size: 12px;
+        }
+
+        .cat-tab:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .cat-tab.active {
+            background: rgba(248, 113, 113, 0.12);
+            border-color: rgba(248, 113, 113, 0.35);
+            color: #f87171;
+        }
+
+        /* CARD */
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 24px;
+            padding: 26px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px;
+        }
+
+        /* Unit selects row */
+        .convert-row {
+            display: grid;
+            grid-template-columns: 1fr 44px 1fr;
+            gap: 10px;
+            align-items: flex-end;
+            margin-bottom: 16px;
+        }
+
+        .sel-grp {}
+
+        .sel-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sel-lbl i {
+            font-size: 11px;
+            color: #f87171;
+        }
+
+        .unit-select {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px 32px 12px 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.3s;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+
+        .unit-select:focus {
+            border-color: #f87171;
+        }
+
+        .unit-select option {
+            background: #0f172a;
+        }
+
+        .swap-wrap {
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 2px;
+        }
+
+        .swap-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #f87171;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .swap-btn:hover {
+            background: rgba(248, 113, 113, 0.2);
+            transform: rotate(180deg);
+        }
+
+        /* Input */
+        .inp-grp {
+            margin-bottom: 16px;
+        }
+
+        .inp-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .inp-lbl i {
+            font-size: 11px;
+            color: #f87171;
+        }
+
+        .inp-field {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 15px 18px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .inp-field:focus {
+            border-color: #f87171;
+            box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.1);
+        }
+
+        .inp-field::placeholder {
+            color: #1e3a5f;
+            font-size: 16px;
+        }
+
+        /* Result */
+        .result-box {
+            background: linear-gradient(135deg, rgba(248, 113, 113, 0.1), rgba(248, 113, 113, 0.03));
+            border: 1px solid rgba(248, 113, 113, 0.22);
+            border-radius: 16px;
+            padding: 22px 20px;
+            text-align: center;
+            margin-bottom: 16px;
+            display: none;
+            animation: popIn 0.3s ease both;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.97) translateY(6px)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0)
+            }
+        }
+
+        .res-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #475569;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .res-lbl i {
+            color: #f87171;
+        }
+
+        .res-val {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(26px, 7vw, 40px);
+            font-weight: 800;
+            color: #f87171;
+            line-height: 1.1;
+            word-break: break-all;
+            margin-bottom: 8px;
+        }
+
+        .res-eq {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        .res-eq b {
+            color: #64748b;
+        }
+
+        /* Clear btn */
+        .clear-btn {
+            background: none;
+            border: 1px solid #1e3a5f;
+            border-radius: 10px;
+            padding: 9px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            color: #fff;
+            border-color: #334155;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* Quick ref table */
+        .ref-box {
+            width: 100%;
+            max-width: 500px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .ref-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #94a3b8;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ref-title i {
+            color: #f87171;
+        }
+
+        .ref-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #0f172a;
+            font-size: 13px;
+        }
+
+        .ref-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .ref-from {
+            color: #64748b;
+        }
+
+        .ref-eq {
+            color: #334155;
+            font-size: 11px;
+        }
+
+        .ref-to {
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        /* Info box */
+        .info-box {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .info-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #94a3b8;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-title i {
+            color: #f87171;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-row i {
+            color: #334155;
+            font-size: 11px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .info-row b {
+            color: #64748b;
+        }
+
+        ::-webkit-scrollbar {
+            width: 1px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #f87171, #dc2626);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/index.html" class="nav-logo">
+                <div class="nav-logo-icon"><i class="fa-solid fa-toolbox"></i></div>
+                Tools<span>Hub</span>
+            </a>
+
+            <a href="/index.html" class="nav-home-btn"><i class="fa-solid fa-house"></i> Home</a>
+        </div>
+    </nav>
+
+    <div class="page">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="/index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <span>Unit Converter</span>
+        </div>
+
+        <h1 class="page-title"><i class="fa-solid fa-ruler-combined"></i>Unit Converter</h1>
+        <p class="page-sub">Convert length, weight, temperature, area and speed units instantly.</p>
+
+        <!-- CATEGORY TABS -->
+        <div class="cat-tabs">
+            <button class="cat-tab active" onclick="switchCat('length',this)"><i
+                    class="fa-solid fa-ruler-horizontal"></i> Length</button>
+            <button class="cat-tab" onclick="switchCat('weight',this)"><i class="fa-solid fa-weight-hanging"></i>
+                Weight</button>
+            <button class="cat-tab" onclick="switchCat('temp',this)"><i class="fa-solid fa-temperature-half"></i>
+                Temperature</button>
+            <button class="cat-tab" onclick="switchCat('area',this)"><i class="fa-solid fa-vector-square"></i>
+                Area</button>
+            <button class="cat-tab" onclick="switchCat('speed',this)"><i class="fa-solid fa-gauge-high"></i>
+                Speed</button>
+        </div>
+
+        <!-- CARD -->
+        <div class="card">
+
+            <!-- INPUT -->
+            <div class="inp-grp">
+                <div class="inp-lbl"><i class="fa-solid fa-input-numeric"></i> Value</div>
+                <input type="number" class="inp-field" id="valInp" placeholder="Enter value" oninput="convert()" />
+            </div>
+
+            <!-- FROM / SWAP / TO -->
+            <div class="convert-row">
+                <div class="sel-grp">
+                    <div class="sel-lbl"><i class="fa-solid fa-arrow-right-from-bracket"></i> From</div>
+                    <select class="unit-select" id="fromUnit" onchange="convert()"></select>
+                </div>
+                <div class="swap-wrap">
+                    <div class="swap-btn" onclick="swapUnits()"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                </div>
+                <div class="sel-grp">
+                    <div class="sel-lbl"><i class="fa-solid fa-arrow-right-to-bracket"></i> To</div>
+                    <select class="unit-select" id="toUnit" onchange="convert()"></select>
+                </div>
+            </div>
+
+            <!-- RESULT -->
+            <div class="result-box" id="resultBox">
+                <div class="res-lbl"><i class="fa-solid fa-equals"></i> Result</div>
+                <div class="res-val" id="resVal">—</div>
+                <div class="res-eq" id="resEq"></div>
+            </div>
+
+            <button class="clear-btn" onclick="clearAll()"><i class="fa-solid fa-rotate-left"></i> Clear</button>
+
+        </div>
+
+        <!-- Quick Reference -->
+        <div class="ref-box" id="refBox"></div>
+
+        <!-- Info -->
+        <div class="info-box">
+            <div class="info-title"><i class="fa-solid fa-circle-info"></i> How to use</div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span>Select a <b>category</b> — Length, Weight,
+                    Temperature, Area, or Speed.</span></div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span>Choose <b>From</b> and <b>To</b> units
+                    from the dropdowns.</span></div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span>Type a value — result appears
+                    <b>instantly</b>.</span></div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span>Use <b>⇄ swap</b> to reverse the
+                    conversion.</span></div>
+        </div>
+        <br>
+        <script>
+            atOptions = {
+                'key': '64011bd107af3f289fba55b72d187db7',
+                'format': 'iframe',
+                'height': 50,
+                'width': 320,
+                'params': {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/64011bd107af3f289fba55b72d187db7/invoke.js"></script>
+    </div>
+
+    <script>
+        // ── UNIT DEFINITIONS ──
+        // Each unit has: label, factor (to base unit), and optionally special conversion fn for temp
+        var CATS = {
+            length: {
+                label: 'Length',
+                base: 'Meter',
+                units: [
+                    { label: 'Kilometer (km)', sym: 'km', factor: 1000 },
+                    { label: 'Meter (m)', sym: 'm', factor: 1 },
+                    { label: 'Centimeter (cm)', sym: 'cm', factor: 0.01 },
+                    { label: 'Millimeter (mm)', sym: 'mm', factor: 0.001 },
+                    { label: 'Mile (mi)', sym: 'mi', factor: 1609.344 },
+                    { label: 'Yard (yd)', sym: 'yd', factor: 0.9144 },
+                    { label: 'Foot (ft)', sym: 'ft', factor: 0.3048 },
+                    { label: 'Inch (in)', sym: 'in', factor: 0.0254 },
+                    { label: 'Nautical Mile', sym: 'nmi', factor: 1852 },
+                ],
+                defaults: ['km', 'mi'],
+                refs: [
+                    { from: '1 km', to: '0.6214 miles' },
+                    { from: '1 mile', to: '1.6093 km' },
+                    { from: '1 foot', to: '30.48 cm' },
+                    { from: '1 inch', to: '2.54 cm' },
+                    { from: '1 meter', to: '3.2808 feet' },
+                ]
+            },
+            weight: {
+                label: 'Weight',
+                base: 'Kilogram',
+                units: [
+                    { label: 'Kilogram (kg)', sym: 'kg', factor: 1 },
+                    { label: 'Gram (g)', sym: 'g', factor: 0.001 },
+                    { label: 'Milligram (mg)', sym: 'mg', factor: 0.000001 },
+                    { label: 'Pound (lb)', sym: 'lb', factor: 0.453592 },
+                    { label: 'Ounce (oz)', sym: 'oz', factor: 0.0283495 },
+                    { label: 'Ton (metric)', sym: 't', factor: 1000 },
+                    { label: 'Stone (st)', sym: 'st', factor: 6.35029 },
+                ],
+                defaults: ['kg', 'lb'],
+                refs: [
+                    { from: '1 kg', to: '2.2046 pounds' },
+                    { from: '1 lb', to: '0.4536 kg' },
+                    { from: '1 ton', to: '1000 kg' },
+                    { from: '1 stone', to: '6.35 kg' },
+                    { from: '1 oz', to: '28.35 grams' },
+                ]
+            },
+            temp: {
+                label: 'Temperature',
+                base: 'special',
+                units: [
+                    { label: 'Celsius (°C)', sym: 'C' },
+                    { label: 'Fahrenheit (°F)', sym: 'F' },
+                    { label: 'Kelvin (K)', sym: 'K' },
+                ],
+                defaults: ['C', 'F'],
+                refs: [
+                    { from: '0°C', to: '32°F' },
+                    { from: '100°C', to: '212°F' },
+                    { from: '37°C', to: '98.6°F' },
+                    { from: '0°C', to: '273.15 K' },
+                    { from: '-40°C', to: '-40°F' },
+                ]
+            },
+            area: {
+                label: 'Area',
+                base: 'sq meter',
+                units: [
+                    { label: 'Sq Kilometer (km²)', sym: 'km2', factor: 1e6 },
+                    { label: 'Sq Meter (m²)', sym: 'm2', factor: 1 },
+                    { label: 'Sq Centimeter (cm²)', sym: 'cm2', factor: 0.0001 },
+                    { label: 'Sq Mile (mi²)', sym: 'mi2', factor: 2589988.11 },
+                    { label: 'Sq Yard (yd²)', sym: 'yd2', factor: 0.836127 },
+                    { label: 'Sq Foot (ft²)', sym: 'ft2', factor: 0.092903 },
+                    { label: 'Sq Inch (in²)', sym: 'in2', factor: 0.00064516 },
+                    { label: 'Acre', sym: 'ac', factor: 4046.86 },
+                    { label: 'Hectare (ha)', sym: 'ha', factor: 10000 },
+                    { label: 'Marla (Pakistan)', sym: 'marla', factor: 25.2929 },
+                    { label: 'Kanal (Pakistan)', sym: 'kanal', factor: 505.857 },
+                ],
+                defaults: ['ac', 'm2'],
+                refs: [
+                    { from: '1 acre', to: '4046.86 m²' },
+                    { from: '1 hectare', to: '10,000 m²' },
+                    { from: '1 km²', to: '247.1 acres' },
+                    { from: '1 marla', to: '25.29 m²' },
+                    { from: '1 kanal', to: '20 marlas' },
+                ]
+            },
+            speed: {
+                label: 'Speed',
+                base: 'm/s',
+                units: [
+                    { label: 'Meter/sec (m/s)', sym: 'ms', factor: 1 },
+                    { label: 'Km/hour (km/h)', sym: 'kmh', factor: 0.277778 },
+                    { label: 'Mile/hour (mph)', sym: 'mph', factor: 0.44704 },
+                    { label: 'Knot (kn)', sym: 'kn', factor: 0.514444 },
+                    { label: 'Foot/sec (ft/s)', sym: 'fts', factor: 0.3048 },
+                    { label: 'Mach (at sea lvl)', sym: 'mach', factor: 340.29 },
+                ],
+                defaults: ['kmh', 'mph'],
+                refs: [
+                    { from: '1 km/h', to: '0.6214 mph' },
+                    { from: '1 mph', to: '1.6093 km/h' },
+                    { from: '1 knot', to: '1.852 km/h' },
+                    { from: '100 km/h', to: '62.14 mph' },
+                    { from: '1 Mach', to: '1234.8 km/h' },
+                ]
+            }
+        };
+
+        var currentCat = 'length';
+
+        // ── SWITCH CATEGORY ──
+        function switchCat(cat, btn) {
+            currentCat = cat;
+            document.querySelectorAll('.cat-tab').forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            buildSelects();
+            buildRefs();
+            clearAll();
+        }
+
+        // ── BUILD SELECTS ──
+        function buildSelects() {
+            var data = CATS[currentCat];
+            var fEl = document.getElementById('fromUnit');
+            var tEl = document.getElementById('toUnit');
+            fEl.innerHTML = '';
+            tEl.innerHTML = '';
+            data.units.forEach(function (u) {
+                fEl.add(new Option(u.label, u.sym));
+                tEl.add(new Option(u.label, u.sym));
+            });
+            fEl.value = data.defaults[0];
+            tEl.value = data.defaults[1];
+        }
+
+        // ── BUILD QUICK REF ──
+        function buildRefs() {
+            var data = CATS[currentCat];
+            var html = '<div class="ref-title"><i class="fa-solid fa-bolt"></i> Quick Reference — ' + data.label + '</div>';
+            data.refs.forEach(function (r) {
+                html += '<div class="ref-row"><span class="ref-from">' + r.from + '</span><span class="ref-eq">=</span><span class="ref-to">' + r.to + '</span></div>';
+            });
+            document.getElementById('refBox').innerHTML = html;
+        }
+
+        // ── TEMPERATURE CONVERT ──
+        function convertTemp(val, from, to) {
+            var celsius;
+            if (from === 'C') celsius = val;
+            else if (from === 'F') celsius = (val - 32) * 5 / 9;
+            else if (from === 'K') celsius = val - 273.15;
+
+            if (to === 'C') return celsius;
+            else if (to === 'F') return celsius * 9 / 5 + 32;
+            else if (to === 'K') return celsius + 273.15;
+        }
+
+        // ── MAIN CONVERT ──
+        function convert() {
+            var val = parseFloat(document.getElementById('valInp').value);
+            var from = document.getElementById('fromUnit').value;
+            var to = document.getElementById('toUnit').value;
+            var box = document.getElementById('resultBox');
+
+            if (isNaN(val)) { box.classList.remove('show'); return; }
+
+            var data = CATS[currentCat];
+            var result;
+
+            if (currentCat === 'temp') {
+                result = convertTemp(val, from, to);
+            } else {
+                var fUnit = data.units.find(function (u) { return u.sym === from; });
+                var tUnit = data.units.find(function (u) { return u.sym === to; });
+                if (!fUnit || !tUnit) { box.classList.remove('show'); return; }
+                // Convert to base then to target
+                result = (val * fUnit.factor) / tUnit.factor;
+            }
+
+            // Format
+            function fmt(n) {
+                if (isNaN(n)) return '—';
+                var abs = Math.abs(n);
+                if (abs === 0) return '0';
+                if (abs >= 1e9) return n.toExponential(4);
+                if (abs >= 10000) return parseFloat(n.toFixed(2)).toLocaleString('en-US');
+                if (abs >= 1) return parseFloat(n.toFixed(6)).toString();
+                return parseFloat(n.toFixed(8)).toString();
+            }
+
+            var fromUnit = data.units.find(function (u) { return u.sym === from; });
+            var toUnit2 = data.units.find(function (u) { return u.sym === to; });
+            var fromSym = fromUnit ? fromUnit.label.match(/\(([^)]+)\)/)?.[1] || fromUnit.sym : from;
+            var toSym = toUnit2 ? toUnit2.label.match(/\(([^)]+)\)/)?.[1] || toUnit2.sym : to;
+
+            document.getElementById('resVal').textContent = fmt(result) + ' ' + toSym;
+            document.getElementById('resEq').innerHTML =
+                '<b>' + fmt(val) + ' ' + fromSym + '</b> = <b>' + fmt(result) + ' ' + toSym + '</b>';
+
+            box.classList.add('show');
+        }
+
+        // ── SWAP ──
+        function swapUnits() {
+            var f = document.getElementById('fromUnit');
+            var t = document.getElementById('toUnit');
+            var tmp = f.value; f.value = t.value; t.value = tmp;
+            convert();
+        }
+
+        // ── CLEAR ──
+        function clearAll() {
+            document.getElementById('valInp').value = '';
+            document.getElementById('resultBox').classList.remove('show');
+        }
+
+        // ── INIT ──
+        buildSelects();
+        buildRefs();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Currency Converter – Live Exchange Rates | ToolsHub</title>
+    <meta name="description"
+        content="Free online currency converter with live exchange rates. Convert USD, EUR, GBP, SAR, AED to PKR and 150+ currencies instantly. Auto-updating rates.">
+    <meta name="keywords"
+        content="currency converter, USD to PKR, dollar to rupee, live exchange rate, online currency converter, EUR to PKR, SAR to PKR, AED to PKR, GBP to PKR, free currency tool">
+    <meta name="author" content="ToolsHub">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="Currency Converter – Live Exchange Rates | ToolsHub">
+    <meta property="og:description"
+        content="Convert any currency to PKR or 150+ currencies with live auto-updating rates. Free and mobile-friendly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calculator-seven-pi-12.vercel.app/currency/">
+    <link rel="canonical" href="https://calculator-seven-pi-12.vercel.app/currency/">
+    <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Currency Converter","url":"https://calculator-seven-pi-12.vercel.app/currency/","description":"Free online currency converter with live exchange rates.","applicationCategory":"FinanceApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            touch-action: manipulation;
+        }
+
+        body {
+            background: #0f172a;
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 18px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .nav-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6ee7b7, #60a5fa);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .nav-logo span {
+            color: #6ee7b7;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .nav-center a {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 6px 13px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-center a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-center a.active {
+            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.1);
+        }
+
+        .nav-center a i {
+            font-size: 11px;
+        }
+
+        .nav-home-btn {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #000;
+            background: linear-gradient(135deg, #6ee7b7, #34d399);
+            border: none;
+            border-radius: 20px;
+            padding: 7px 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-home-btn:hover {
+            box-shadow: 0 0 16px rgba(110, 231, 183, 0.4);
+        }
+
+        @media(max-width:540px) {
+            .nav-center {
+                display: none;
+            }
+        }
+
+        /* PAGE */
+        .page {
+            padding-top: 74px;
+            padding-bottom: 50px;
+            padding-left: 16px;
+            padding-right: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .breadcrumb {
+            font-size: 12px;
+            color: #475569;
+            margin-bottom: 16px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .breadcrumb a {
+            color: #6ee7b7;
+            text-decoration: none;
+        }
+
+        .breadcrumb i {
+            font-size: 10px;
+        }
+
+        .page-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(22px, 5vw, 30px);
+            font-weight: 800;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .page-title i {
+            color: #fbbf24;
+            margin-right: 8px;
+        }
+
+        .page-sub {
+            font-size: 13px;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        /* Status */
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 22px;
+            font-size: 12px;
+            color: #475569;
+        }
+
+        .s-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #34d399;
+            box-shadow: 0 0 8px #34d399;
+            animation: pulse 2s infinite;
+            flex-shrink: 0;
+        }
+
+        .s-dot.loading {
+            background: #fbbf24;
+            box-shadow: 0 0 8px #fbbf24;
+            animation: spin 1s linear infinite;
+        }
+
+        .s-dot.error {
+            background: #f87171;
+            box-shadow: 0 0 8px #f87171;
+            animation: none;
+        }
+
+        /* CARD */
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 24px;
+            padding: 26px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            margin-bottom: 16px;
+        }
+
+        .inp-grp {
+            margin-bottom: 16px;
+        }
+
+        .inp-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .inp-lbl i {
+            font-size: 11px;
+            color: #fbbf24;
+        }
+
+        .inp-field {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 15px 18px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .inp-field:focus {
+            border-color: #fbbf24;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+        }
+
+        .inp-field::placeholder {
+            color: #1e3a5f;
+            font-size: 16px;
+        }
+
+        /* From/To row */
+        .sel-row {
+            display: grid;
+            grid-template-columns: 1fr 44px 1fr;
+            gap: 10px;
+            align-items: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .sel-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .sel-lbl i {
+            font-size: 11px;
+            color: #fbbf24;
+        }
+
+        .cur-select {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 13px 32px 13px 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.3s;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+
+        .cur-select:focus {
+            border-color: #fbbf24;
+        }
+
+        .cur-select option {
+            background: #0f172a;
+        }
+
+        .swap-wrap {
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 2px;
+        }
+
+        .swap-btn {
+            width: 44px;
+            height: 46px;
+            border-radius: 12px;
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #fbbf24;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .swap-btn:hover {
+            background: rgba(251, 191, 36, 0.22);
+            transform: rotate(180deg);
+        }
+
+        /* Result */
+        .result-box {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(251, 191, 36, 0.03));
+            border: 1px solid rgba(251, 191, 36, 0.22);
+            border-radius: 16px;
+            padding: 22px 20px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .result-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #475569;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .result-lbl i {
+            color: #fbbf24;
+        }
+
+        .result-val {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(11px, 11vw, 18px);
+            font-weight: 800;
+            color: #fbbf24;
+            line-height: 1.1;
+            word-break: break-all;
+            margin-bottom: 8px;
+        }
+
+        .result-rate {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        .result-rate b {
+            color: #64748b;
+        }
+
+        /* Bottom */
+        .bottom-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .updated-txt {
+            font-size: 11px;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .updated-txt i {
+            color: #475569;
+            font-size: 10px;
+        }
+
+        .refresh-btn {
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            border-radius: 20px;
+            padding: 7px 16px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #fbbf24;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(251, 191, 36, 0.2);
+        }
+
+        .spin-icon {
+            display: inline-block;
+        }
+
+        .spin-icon.go {
+            animation: spin 1s linear infinite;
+        }
+
+        /* Countdown */
+        .cd-wrap {
+            width: 100%;
+            max-width: 480px;
+            margin-bottom: 20px;
+        }
+
+        .cd-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #334155;
+            margin-bottom: 5px;
+        }
+
+        .cd-bar-bg {
+            width: 100%;
+            height: 2px;
+            background: rgba(251, 191, 36, 0.08);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .cd-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            border-radius: 2px;
+            transition: width 1s linear;
+        }
+
+        /* Popular pairs */
+        .sec-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            color: #334155;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            width: 100%;
+            max-width: 480px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sec-lbl i {
+            color: #fbbf24;
+            font-size: 10px;
+        }
+
+        .sec-lbl::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .pairs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            width: 100%;
+            max-width: 480px;
+            margin-bottom: 20px;
+        }
+
+        @media(max-width:380px) {
+            .pairs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .pair-btn {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 10px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .pair-btn:hover {
+            border-color: rgba(251, 191, 36, 0.35);
+            background: rgba(251, 191, 36, 0.06);
+        }
+
+        .pair-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: #94a3b8;
+        }
+
+        .pair-rate {
+            font-size: 11px;
+            color: #475569;
+            margin-top: 3px;
+        }
+
+        /* Info */
+        .info-box {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .info-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #94a3b8;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-title i {
+            color: #fbbf24;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-row i {
+            color: #334155;
+            font-size: 11px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .info-row b {
+            color: #64748b;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.8)
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.97) translateY(6px)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0)
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 1px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #fbbf24, #f59e0b);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="/index.html" class="nav-logo">
+                <div class="nav-logo-icon"><i class="fa-solid fa-toolbox"></i></div>
+                Tools<span>Hub</span>
+            </a>
+           
+            <a href="/index.html" class="nav-home-btn"><i class="fa-solid fa-house"></i> Home</a>
+        </div>
+    </nav>
+
+    <div class="page">
+        <div class="breadcrumb">
+            <a href="/index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <span>Currency Converter</span>
+        </div>
+
+        <h1 class="page-title"><i class="fa-solid fa-money-bill-transfer"></i>Currency Converter</h1>
+        <p class="page-sub">Live exchange rates — Convert any currency instantly.</p>
+ <div class="pairs-grid" id="pairsGrid"></div>
+        <div class="status-bar">
+            <div class="s-dot loading" id="sDot"></div>
+            <span id="sTxt">Fetching live rates...</span>
+        </div>
+
+        <div class="card">
+            <div class="inp-grp">
+                <div class="inp-lbl"><i class="fa-solid fa-coins"></i> Amount</div>
+                <input type="number" class="inp-field" id="amtInp" placeholder="Enter amount" value="1" min="0"
+                    oninput="convert()" />
+            </div>
+
+            <div class="sel-row">
+                <div>
+                    <div class="sel-lbl"><i class="fa-solid fa-arrow-right-from-bracket"></i> From</div>
+                    <select class="cur-select" id="fromCur" onchange="convert()"></select>
+                </div>
+                <div class="swap-wrap">
+                    <div class="swap-btn" onclick="swapCur()" title="Swap"><i
+                            class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                </div>
+                <div>
+                    <div class="sel-lbl"><i class="fa-solid fa-arrow-right-to-bracket"></i> To</div>
+                    <select class="cur-select" id="toCur" onchange="convert()"></select>
+                </div>
+            </div>
+
+            <div class="result-box" id="resultBox">
+                <div class="result-lbl"><i class="fa-solid fa-equals"></i> Result</div>
+                <div class="result-val" id="resultVal">—</div>
+                <div class="result-rate" id="resultRate"></div>
+            </div>
+
+            <div class="bottom-row">
+                <div class="updated-txt"><i class="fa-regular fa-clock"></i> <span id="updTxt">Updating...</span></div>
+                <button class="refresh-btn" onclick="fetchRates()">
+                    <span class="spin-icon" id="spinIcon"><i class="fa-solid fa-rotate"></i></span> Refresh
+                </button>
+            </div>
+        </div>
+
+        <!-- Countdown -->
+        <div class="cd-wrap">
+            <div class="cd-row">
+                <span><i class="fa-solid fa-rotate"
+                        style="font-size:10px;color:#334155;margin-right:4px;"></i>Auto-refresh</span>
+                <span id="cdSec" style="color:#475569;">60s</span>
+            </div>
+            <div class="cd-bar-bg">
+                <div class="cd-bar" id="cdBar" style="width:100%"></div>
+            </div>
+        </div>
+
+        <!-- Popular pairs -->
+        <div class="sec-lbl"><i class="fa-solid fa-star"></i> Popular Pairs</div>
+       
+
+        <!-- Info -->
+        <div class="info-box">
+            <div class="info-title"><i class="fa-solid fa-circle-info"></i> How it works</div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span>Enter amount and select currencies.</span>
+            </div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span>Rates are fetched live and <b>auto-refresh
+                        every 60 seconds</b>.</span></div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span>Use <b>⇄ swap</b> button to reverse
+                    conversion.</span></div>
+            <div class="info-row"><i class="fa-solid fa-circle-dot"></i><span>Click any <b>Popular Pair</b> to quickly
+                    set that pair.</span></div>
+        </div>
+        <br><script>
+  atOptions = {
+    'key' : '64011bd107af3f289fba55b72d187db7',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/64011bd107af3f289fba55b72d187db7/invoke.js"></script>
+    </div>
+
+    <script>
+        var CURRENCIES = [
+            { code: 'USD', name: 'US Dollar' },
+            { code: 'PKR', name: 'Pakistani Rupee' },
+            { code: 'EUR', name: 'Euro' },
+            { code: 'GBP', name: 'British Pound' },
+            { code: 'SAR', name: 'Saudi Riyal' },
+            { code: 'AED', name: 'UAE Dirham' },
+            { code: 'CAD', name: 'Canadian Dollar' },
+            { code: 'AUD', name: 'Australian Dollar' },
+            { code: 'CNY', name: 'Chinese Yuan' },
+            { code: 'JPY', name: 'Japanese Yen' },
+            { code: 'INR', name: 'Indian Rupee' },
+            { code: 'CHF', name: 'Swiss Franc' },
+            { code: 'KWD', name: 'Kuwaiti Dinar' },
+            { code: 'QAR', name: 'Qatari Riyal' },
+            { code: 'MYR', name: 'Malaysian Ringgit' },
+            { code: 'SGD', name: 'Singapore Dollar' },
+            { code: 'TRY', name: 'Turkish Lira' },
+            { code: 'BDT', name: 'Bangladeshi Taka' },
+            { code: 'NZD', name: 'New Zealand Dollar' },
+            { code: 'ZAR', name: 'South African Rand' },
+            { code: 'HKD', name: 'Hong Kong Dollar' },
+            { code: 'MXN', name: 'Mexican Peso' },
+            { code: 'BRL', name: 'Brazilian Real' },
+            { code: 'THB', name: 'Thai Baht' },
+            { code: 'IDR', name: 'Indonesian Rupiah' },
+            { code: 'EGP', name: 'Egyptian Pound' },
+            { code: 'OMR', name: 'Omani Rial' },
+            { code: 'BHD', name: 'Bahraini Dinar' },
+            { code: 'JOD', name: 'Jordanian Dinar' },
+        ];
+
+        var POPULAR = [
+            { from: 'USD', to: 'PKR' },
+            { from: 'EUR', to: 'PKR' },
+            { from: 'GBP', to: 'PKR' },
+            { from: 'SAR', to: 'PKR' },
+            { from: 'AED', to: 'PKR' },
+            { from: 'USD', to: 'EUR' },
+        ];
+
+        var rates = {};
+        var countdown = 60;
+        var cdTimer, refreshTimer;
+
+        function fmt(n) {
+            if (isNaN(n)) return '—';
+            if (n >= 1000) return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (n >= 1) return parseFloat(n.toFixed(4)).toString();
+            return parseFloat(n.toFixed(6)).toString();
+        }
+
+        // Populate selects
+        function populateSelects() {
+            var fEl = document.getElementById('fromCur');
+            var tEl = document.getElementById('toCur');
+            CURRENCIES.forEach(function (c) {
+                fEl.add(new Option(c.code + ' — ' + c.name, c.code));
+                tEl.add(new Option(c.code + ' — ' + c.name, c.code));
+            });
+            fEl.value = 'USD';
+            tEl.value = 'PKR';
+        }
+
+        // CONVERT
+        function convert() {
+            var from = document.getElementById('fromCur').value;
+            var to = document.getElementById('toCur').value;
+            var amt = parseFloat(document.getElementById('amtInp').value);
+
+            var rFrom = rates[from];
+            var rTo = rates[to];
+
+            if (!rFrom || !rTo || isNaN(amt) || amt < 0) {
+                document.getElementById('resultVal').textContent = '—';
+                document.getElementById('resultRate').textContent = '';
+                return;
+            }
+
+            // rates are all vs USD base
+            var result = (amt / rFrom) * rTo;
+            var oneUnit = rTo / rFrom;
+
+            document.getElementById('resultVal').textContent = fmt(result) + ' ' + to;
+            document.getElementById('resultRate').innerHTML =
+                '<b>1 ' + from + '</b> = <b>' + fmt(oneUnit) + ' ' + to + '</b>';
+        }
+
+        function swapCur() {
+            var f = document.getElementById('fromCur');
+            var t = document.getElementById('toCur');
+            var tmp = f.value; f.value = t.value; t.value = tmp;
+            convert();
+        }
+
+        // BUILD PAIRS
+        function buildPairs() {
+            var grid = document.getElementById('pairsGrid');
+            grid.innerHTML = '';
+            POPULAR.forEach(function (p) {
+                var rF = rates[p.from], rT = rates[p.to];
+                var rate = (rF && rT) ? fmt(rT / rF) : '—';
+                var div = document.createElement('div');
+                div.className = 'pair-btn';
+                div.innerHTML = '<div class="pair-name">' + p.from + ' → ' + p.to + '</div><div class="pair-rate">' + rate + '</div>';
+                div.onclick = function () {
+                    document.getElementById('fromCur').value = p.from;
+                    document.getElementById('toCur').value = p.to;
+                    convert();
+                };
+                grid.appendChild(div);
+            });
+        }
+
+        // FETCH — tries APIs that include PKR
+        function fetchRates() {
+            setLoading(true);
+            resetCountdown();
+
+            // Primary: fawaz CDN — 150+ currencies including PKR
+            fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json')
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    if (d && d.usd && d.usd.pkr) {
+                        var r2 = {};
+                        Object.keys(d.usd).forEach(function (k) { r2[k.toUpperCase()] = d.usd[k]; });
+                        r2['USD'] = 1;
+                        rates = r2;
+                        setLive();
+                        convert();
+                        buildPairs();
+                    } else { throw new Error('no pkr'); }
+                })
+                .catch(function () {
+                    // Fallback: open.er-api
+                    fetch('https://open.er-api.com/v6/latest/USD')
+                        .then(function (r) { return r.json(); })
+                        .then(function (d) {
+                            if (d && d.rates && d.rates.PKR) {
+                                rates = d.rates;
+                                rates['USD'] = 1;
+                                setLive();
+                                convert();
+                                buildPairs();
+                            } else { throw new Error('no pkr'); }
+                        })
+                        .catch(function () {
+                            // Fallback 2: exchangerate-api
+                            fetch('https://api.exchangerate-api.com/v4/latest/USD')
+                                .then(function (r) { return r.json(); })
+                                .then(function (d) {
+                                    if (d && d.rates && d.rates.PKR) {
+                                        rates = d.rates;
+                                        rates['USD'] = 1;
+                                        setLive();
+                                        convert();
+                                        buildPairs();
+                                    } else { throw new Error(); }
+                                })
+                                .catch(function () {
+                                    document.getElementById('sDot').className = 's-dot error';
+                                    document.getElementById('sTxt').textContent = 'Could not fetch rates — check internet & refresh';
+                                    document.getElementById('spinIcon').classList.remove('go');
+                                });
+                        });
+                });
+        }
+
+        function setLive() {
+            document.getElementById('sDot').className = 's-dot';
+            var t = new Date().toLocaleTimeString();
+            document.getElementById('sTxt').textContent = 'Live rates · ' + t;
+            document.getElementById('updTxt').textContent = 'Updated: ' + t;
+            document.getElementById('spinIcon').classList.remove('go');
+        }
+
+        function setLoading(on) {
+            if (on) {
+                document.getElementById('sDot').className = 's-dot loading';
+                document.getElementById('sTxt').textContent = 'Fetching live rates...';
+                document.getElementById('spinIcon').classList.add('go');
+            } else {
+                document.getElementById('spinIcon').classList.remove('go');
+            }
+        }
+
+        function resetCountdown() {
+            clearInterval(cdTimer);
+            countdown = 60;
+            updateCD();
+            cdTimer = setInterval(function () {
+                countdown--;
+                if (countdown < 0) countdown = 0;
+                updateCD();
+            }, 1000);
+        }
+
+        function updateCD() {
+            document.getElementById('cdSec').textContent = countdown + 's';
+            document.getElementById('cdBar').style.width = (countdown / 60 * 100) + '%';
+        }
+
+        populateSelects();
+        fetchRates();
+        refreshTimer = setInterval(fetchRates, 60000);
+    </script>
+</body>
+
+</html>
