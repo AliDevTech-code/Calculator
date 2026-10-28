@@ -6,16 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO -->
-    <title>ToolsHub – Free Online Calculators & Converter Tools</title>
+    <title>ToolsHub | Free Online Calculators, Converters & Utility Tools</title>
     <meta name="description"
-        content="Free online tools: calculators, currency converter, USDT to PKR, math calculator, crypto tools and more. Fast, accurate, mobile-friendly tools for everyone.">
+        content="ToolsHub offers 15+ free online calculators and converters including USDT to PKR, loan EMI, percentage, BMI, age, unit & currency tools. Fast, accurate and mobile-friendly.">
     <meta name="keywords"
-        content="online calculator, USDT to PKR converter, crypto converter, math calculator, free tools, currency converter, online tools, percentage calculator, BMI calculator, loan calculator">
+        content="free online calculator, usdt to pkr calculator, usdt to pkr rate, loan emi calculator, percentage calculator, bmi calculator, age calculator, unit converter, currency converter, online tools, calculatortools">
         <meta name="google-site-verification" content="FWrX2vy-J4xjHthjgB5HoOyfY0BDs-50eKfYe9muQok" />
     <meta name="author" content="ToolsHub">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="1 days">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="ToolsHub – Free Online Calculators & Tools">
-    <meta property="og:description" content="Fast & free online tools – calculators, crypto converters, and much more.">
+    <meta property="og:title" content="ToolsHub | Free Online Calculators, Converters & Utility Tools">
+    <meta property="og:description" content="15+ free online tools including USDT to PKR, EMI, BMI, Percentage, Age and more. 100% free, instant results.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://calculator-seven-pi-12.vercel.app/">
     <meta property="og:site_name" content="ToolsHub">
@@ -24,35 +26,41 @@
     <link rel="canonical" href="https://calculator-seven-pi-12.vercel.app/">
 
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
-            --bg: #07090f;
-            --bg2: #0d1117;
-            --bg3: #111827;
-            --accent: #6ee7b7;
+            --bg: #050810;
+            --bg2: #0b1020;
+            --bg3: #101626;
+            --accent: #22d3ee;
+            --accent-2: #a78bfa;
             --blue: #60a5fa;
             --purple: #a78bfa;
             --orange: #fb923c;
             --pink: #f472b6;
-            --yellow: #fbbf24;
+            --yellow: #f59e0b;
             --red: #f87171;
-            --green: #34d399;
-            --text: #e2e8f0;
-            --text2: #94a3b8;
-            --border: rgba(255, 255, 255, 0.07);
-            --card-bg: rgba(255, 255, 255, 0.03);
+            --green: #22c55e;
+            --text: #f8fafc;
+            --text2: #cbd5f5;
+            --text3: #94a3b8;
+            --border: rgba(148, 163, 184, 0.18);
+            --card-bg: radial-gradient(120% 120% at 50% 0%, rgba(34, 211, 238, 0.08) 0%, rgba(15, 23, 42, 0.9) 100%);
+            --glow: 0 40px 120px -60px rgba(34, 211, 238, 0.45);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         html {
@@ -60,8 +68,10 @@
         }
 
         body {
-            background: var(--bg);
-            font-family: 'DM Sans', sans-serif;
+            background: radial-gradient(140% 140% at 50% 0%, rgba(34, 211, 238, 0.12) 0%, transparent 55%), var(--bg);
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            line-height: 1.7;
             color: var(--text);
             min-height: 100vh;
             overflow-x: hidden;
@@ -122,7 +132,7 @@
         }
 
         .logo {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Outfit', 'Inter', sans-serif;
             font-size: 22px;
             font-weight: 800;
             color: #fff;
@@ -217,14 +227,87 @@
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Mobile menu */
+        /* Mobile menu - side drawer */
+        .menu-backdrop {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(120% 120% at 50% 0%, rgba(34, 211, 238, 0.16) 0%, rgba(5, 8, 16, 0.92) 100%);
+            backdrop-filter: blur(10px) saturate(1.1);
+            -webkit-backdrop-filter: blur(10px) saturate(1.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            z-index: 998;
+        }
+
+        .menu-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         .mobile-menu {
-            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100dvh;
+            width: min(86vw, 360px);
+            display: flex;
             flex-direction: column;
-            gap: 2px;
-            padding: 12px 20px 16px;
-            background: rgba(7, 9, 15, 0.96);
-            border-bottom: 1px solid var(--border);
+            gap: 6px;
+            padding: 24px 24px 32px;
+            background: radial-gradient(140% 140% at 100% 0%, rgba(34, 211, 238, 0.18) 0%, rgba(9, 14, 28, 0.98) 100%);
+            border-left: 1px solid rgba(148, 163, 184, 0.28);
+            box-shadow: -60px 0 140px -80px rgba(34, 211, 238, 0.5);
+            transition: right 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .mobile-menu-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Outfit', 'Inter', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .menu-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: transparent;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .mobile-menu-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .mobile-menu-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: var(--text3);
+            margin: 10px 6px 6px;
         }
 
         .mobile-menu a {
@@ -232,28 +315,33 @@
             font-weight: 500;
             color: var(--text2);
             text-decoration: none;
-            padding: 10px 14px;
-            border-radius: 10px;
+            padding: 12px 14px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.2s;
+            gap: 12px;
+            transition: all 0.25s ease;
         }
 
         .mobile-menu a:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            background: linear-gradient(90deg, rgba(34, 211, 238, 0.16) 0%, transparent 100%);
+            transform: translateX(-4px);
         }
 
         .mobile-menu a i {
-            width: 16px;
+            width: 18px;
             text-align: center;
-            font-size: 13px;
+            font-size: 14px;
             color: var(--accent);
         }
 
-        .mobile-menu.open {
-            display: flex;
+        .mobile-menu-footer {
+            margin-top: auto;
+            padding-top: 18px;
+            text-align: center;
+            color: var(--text3);
+            font-size: 13px;
         }
 
         @media(max-width:700px) {
@@ -301,7 +389,7 @@
         }
 
         h1 {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Outfit', 'Inter', sans-serif;
             font-size: clamp(32px, 6vw, 66px);
             font-weight: 800;
             line-height: 1.08;
@@ -337,7 +425,7 @@
         }
 
         .hstat-num {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Outfit', 'Inter', sans-serif;
             font-size: 30px;
             font-weight: 800;
             color: #fff;
@@ -385,7 +473,7 @@
             border: 1px solid rgba(255, 255, 255, 0.11);
             border-radius: 50px;
             padding: 15px 50px 15px 52px;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 14px;
             color: #fff;
             outline: none;
@@ -432,7 +520,7 @@
 
         /* ── SECTION TITLE ── */
         .sec-hd {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Outfit', 'Inter', sans-serif;
             font-size: 11px;
             font-weight: 700;
             color: var(--text2);
@@ -605,7 +693,7 @@
         }
 
         .t-name {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Outfit', 'Inter', sans-serif;
             font-size: 17px;
             font-weight: 700;
             color: #fff;
@@ -734,7 +822,7 @@
         }
 
         .cta-title {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Outfit', 'Inter', sans-serif;
             font-size: clamp(20px, 3vw, 28px);
             font-weight: 800;
             color: #fff;
@@ -779,7 +867,7 @@
         .f-brand {}
 
         .f-logo {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Outfit', 'Inter', sans-serif;
             font-size: 22px;
             font-weight: 800;
             color: #fff;
@@ -840,7 +928,7 @@
         }
 
         .f-col-title {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Outfit', 'Inter', sans-serif;
             font-size: 12px;
             font-weight: 700;
             color: #fff;
@@ -1075,13 +1163,36 @@
     </nav>
 
     <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#tools"><i class="fa-solid fa-grid-2"></i> All Tools</a>
-        <a href="#coming"><i class="fa-regular fa-clock"></i> Coming Soon</a>
-        <a href="crypto-converter.html"><i class="fa-solid fa-coins"></i> USDT to PKR</a>
-        <a href="calculator.html"><i class="fa-solid fa-calculator"></i> Calculator</a>
-        <a href="#footer"><i class="fa-solid fa-envelope"></i> Contact</a>
-    </div>
+    <div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
+    <aside class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-title">
+                <div class="nav-logo-icon"><i class="fa-solid fa-toolbox"></i></div>
+                <span>ToolsHub</span>
+            </div>
+            <button class="menu-close" onclick="toggleMenu()" aria-label="Close menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-group">
+            <div class="mobile-menu-label">Navigate</div>
+            <a href="index.html#tools" onclick="toggleMenu()"><i class="fa-solid fa-grid-2"></i> All Tools</a>
+            <a href="index.html#coming" onclick="toggleMenu()"><i class="fa-regular fa-clock"></i> Coming Soon</a>
+            <a href="usdt-to-pkr/index.html"><i class="fa-brands fa-bitcoin"></i> USDT to PKR</a>
+            <a href="basic/index.html"><i class="fa-solid fa-calculator"></i> Basic Calculator</a>
+        </div>
+        <div class="mobile-menu-group">
+            <div class="mobile-menu-label">Company</div>
+            <a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a>
+            <a href="privacy.html"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
+            <a href="terms.html"><i class="fa-solid fa-file-lines"></i> Terms of Use</a>
+            <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+            <a href="sitemap.html"><i class="fa-solid fa-sitemap"></i> HTML Sitemap</a>
+        </div>
+        <div class="mobile-menu-footer">
+            <p>© 2025 ToolsHub · Free Online Tools</p>
+        </div>
+    </aside>
 
     <div class="wrap">
 
@@ -1586,18 +1697,24 @@
 
         function toggleMenu() {
             var m = document.getElementById('mobileMenu');
+            var b = document.getElementById('menuBackdrop');
             var ic = document.getElementById('hambIcon');
-            m.classList.toggle('open');
-            ic.className = m.classList.contains('open') ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+            if (!m) return;
+            var open = m.classList.toggle('open');
+            if (b) b.classList.toggle('active', open);
+            if (ic) ic.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+            document.body.style.overflow = open ? 'hidden' : '';
         }
 
-        // Close mobile menu on outside click
-        document.addEventListener('click', function (e) {
-            var nav = document.querySelector('nav');
-            var menu = document.getElementById('mobileMenu');
-            if (!nav.contains(e.target) && !menu.contains(e.target)) {
-                menu.classList.remove('open');
-                document.getElementById('hambIcon').className = 'fa-solid fa-bars';
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                var m = document.getElementById('mobileMenu');
+                var b = document.getElementById('menuBackdrop');
+                if (m) m.classList.remove('open');
+                if (b) b.classList.remove('active');
+                var ic = document.getElementById('hambIcon');
+                if (ic) ic.className = 'fa-solid fa-bars';
+                document.body.style.overflow = '';
             }
         });
     </script>
