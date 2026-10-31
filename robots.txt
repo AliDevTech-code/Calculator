@@ -1,4 +1,1 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://calculator-seven-pi-12.vercel.app/sitemap.xml
+User-agent: *\nAllow: /\n\nSitemap: https://calculator-seven-pi-12.vercel.app/sitemap.xml
